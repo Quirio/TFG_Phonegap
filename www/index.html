@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Prueba TFG</title>
+    </head>
+    <body>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/OnchangeEventos.js"></script>
+        <script type="text/javascript" src="js/Peticion_Info_Indicadores.js"></script>
+        <script type="text/javascript" src="js/Peticion_Idicadores.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            app.initialize();
+            Peticion_Indicadores();
+        </script>
+        <div data-role="panel" id="Panel_Peticion" data-position="left" data-display="overlay">
+            <div class="ui-field-contain">
+                <label class="select">Datos a Consultar</label>
+                <select id="SelectorDatos" onchange="OnchangeSelector()">
+                </select>
+            </div>
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="index.html" data-role="button1">Gráfica1</a>
+            <a href="index.html" data-role="button2">Gráfica2</a>
+            <a href="index.html" data-role="button3">Gráfica3</a>
+            <a href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Peticion</a>
+        </div>
+    </body>
+</html>
