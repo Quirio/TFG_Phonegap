@@ -21,15 +21,20 @@ function Peticion_Info_Indicadores(Indicador){
             $("#SelectorGranularidadGeo").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
             //Añadimos selectores de representación geográfica.
-            $("#SelectorDiv").append('<label class="SelectLabel">Representacion Geográfica</label> <select id = "SelectRepresentacionGeográfica" class = "Select" multiple="multiple"></select>)')
+            $("#SelectorDiv").append('<label class="SelectLabel">Representacion Geográfica</label> <select id = "SelectRepresentacionGeográfica" class = "Select" multiple="multiple"></select>')
 
             $("#SelectRepresentacionGeográfica").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
-            //Rellenamos los selectores.
+            //Rellenamos los selectores geográficos.
             for(var i=0; i<data.dimension.GEOGRAPHICAL.granularity.length; i++){
                 $("#SelectorGranularidadGeo").append('<option value=' + data.dimension.GEOGRAPHICAL.granularity[i].code + 'class="SelectOption" >' + data.dimension.GEOGRAPHICAL.granularity[i].title.es +'</option>');
-                $("#SelectRepresentacionGeográfica").append("<optgroup label=" +data.dimension.GEOGRAPHICAL.granularity[i].title.es+ "></optgroup>");
+                $("#SelectRepresentacionGeográfica").append('<optgroup id="'+data.dimension.GEOGRAPHICAL.granularity[i].code+'" label="' +data.dimension.GEOGRAPHICAL.granularity[i].title.es+ '"></optgroup>');
             }
+
+            //Rellenamos Selector de representacion geográfica
+            for(var i=0; i<data.dimension.GEOGRAPHICAL.representation.length; i++)
+                $("#" + data.dimension.GEOGRAPHICAL.representation[i].granularityCode).append('<option value=' + data.dimension.GEOGRAPHICAL.representation[i].code + 'class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
+
 
             //Añadimos selector de granularidad temporal.
             $("#SelectorDiv").append('<label class="SelectLabel">Granularidad temporal</label> <select id="SelectorGranularidadTime" class = "Select"></select>');
@@ -37,19 +42,21 @@ function Peticion_Info_Indicadores(Indicador){
             $("#SelectorGranularidadTime").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
             //Añadimos selectores de representación temporal.
-            $("#SelectorDiv").append('<label class="SelectLabel">Representacion Temporal</label> <select id = "SelectRepresentacionTemporal" class = "Select" multiple="multiple"></select>)')
+            $("#SelectorDiv").append('<label class="SelectLabel">Representacion Temporal</label> <select id = "SelectRepresentacionTemporal" class = "Select" multiple="multiple"></select>')
 
             $("#SelectRepresentacionTemporal").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
-            //Rellenamos selectores.
+            //Rellenamos selectores temporales.
             for(var i=0; i<data.dimension.TIME.granularity.length; i++){
                 $("#SelectorGranularidadTime").append('<option value=' + data.dimension.TIME.granularity[i].code + 'class="SelectOption" >' + data.dimension.TIME.granularity[i].title.es +'</option>');
-                $("#SelectRepresentacionTemporal").append("<optgroup id="+data.dimension.TIME.granularity[i].code+"label=" +data.dimension.TIME.granularity[i].title.es+ "></optgroup>");
+                $("#SelectRepresentacionTemporal").append('<optgroup id="'+data.dimension.TIME.granularity[i].code+'" label="' +data.dimension.TIME.granularity[i].title.es+ '"></optgroup>');
            }
 
             //Rellenamos Selector de representacion temporal
             for(var i=0; i<data.dimension.TIME.representation.length; i++)
-                $("#"+data.dimension.TIME.representation[i].granularityCode).append("<option value=" + data.dimension.TIME.representation[i].code+  "class="SelectOption" >"+ data.dimension.TIME.representation[i].title.es+ " </option>");
+                $("#" + data.dimension.TIME.representation[i].granularityCode).append('<option value=' + data.dimension.TIME.representation[i].code + 'class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
+
+
 
 
 
