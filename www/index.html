@@ -12,26 +12,43 @@
     </head>
     <body>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/OnchangeEventos.js"></script>
+        <script type="text/javascript" src="js/Eventos.js"></script>
+        <script type="text/javascript" src="js/Metodos.js"></script>
         <script type="text/javascript" src="js/Peticion_Info_Indicadores.js"></script>
         <script type="text/javascript" src="js/Peticion_Idicadores.js"></script>
+        <script type="text/javascript" src="js/Peticion_Datos.js"></script>
         <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script type="text/javascript">
             app.initialize();
             Peticion_Indicadores();
         </script>
         <div data-role="panel" id="Panel_Peticion" data-position="left" data-display="overlay">
-            <div class="ui-field-contain">
+            <div>
                 <label class="select">Datos a Consultar</label>
-                <select id="SelectorDatos" onchange="OnchangeSelector()">
+                <select id="SelectorDatos" onchange="OnchangeSelectorDatos()">
                 </select>
+                <div id = "SelectorDiv">
+                    <label class="SelectLabel">Granularidad geográfica</label>
+                    <select id="SelectorGranularidadGeo" class = "Select"></select>
+
+                    <label class="SelectLabel">Representacion Geográfica</label>
+                    <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple"  tabindex="-1" ></select>
+
+                    <label class="SelectLabel">Granularidad temporal</label>
+                    <select id="SelectorGranularidadTime" class = "Select"></select>
+
+                    <label class="SelectLabel">Representacion Temporal</label>
+                    <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple"  tabindex="-1" ></select>
+
+                    <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">
+                </div>
             </div>
         </div>
 
         <div data-role="footer" class="ui-bar">
-            <a href="index.html" data-role="button1">Gráfica1</a>
-            <a href="index.html" data-role="button2">Gráfica2</a>
-            <a href="index.html" data-role="button3">Gráfica3</a>
+            <a href="index.html" data-role="button">Gráfica1</a>
+            <a href="index.html" data-role="button">Gráfica2</a>
+            <a href="index.html" data-role="button">Gráfica3</a>
             <a href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Peticion</a>
         </div>
     </body>

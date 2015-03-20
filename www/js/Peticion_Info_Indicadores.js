@@ -1,6 +1,9 @@
 function Peticion_Info_Indicadores(Indicador){
 
-    var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + Indicador + '?api_key=special-key'
+    var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + Indicador + '?api_key=special-key';
+
+    //Vaciamos Selectores.
+    $(".Select").empty();
 
     $.ajax({
         type: "GET",
@@ -8,57 +11,46 @@ function Peticion_Info_Indicadores(Indicador){
         dataType: "jsonp",
         jsonp: "_callback",
         success: function(data){
-            //borramos los labels para que no se repitan.
-            $("#SelectorDiv").remove();
 
-            //Encapsulamos los selectores de sesgo en un div para facilitar su uso.
-            $("#Panel_Peticion").append('<div id = "SelectorDiv"></div>')
-
-            //Por lo tanto introducimos los selectores a este div.
-            //Añadimos selector de granularidad geográfica.
-            $("#SelectorDiv").append('<label class="SelectLabel">Granularidad geográfica</label> <select id="SelectorGranularidadGeo" class = "Select"></select>');
+            //Añadimos opcion base de granularidad geográfica.
 
             $("#SelectorGranularidadGeo").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
-            //Añadimos selectores de representación geográfica.
-            $("#SelectorDiv").append('<label class="SelectLabel">Representacion Geográfica</label> <select id = "SelectRepresentacionGeográfica" class = "Select" multiple="multiple"></select>')
+            //Añadimos opcion base de representación geográfica.
 
-            $("#SelectRepresentacionGeográfica").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
+            $("#SelectRepresentacionGeo").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
             //Rellenamos los selectores geográficos.
             for(var i=0; i<data.dimension.GEOGRAPHICAL.granularity.length; i++){
                 $("#SelectorGranularidadGeo").append('<option value=' + data.dimension.GEOGRAPHICAL.granularity[i].code + 'class="SelectOption" >' + data.dimension.GEOGRAPHICAL.granularity[i].title.es +'</option>');
-                $("#SelectRepresentacionGeográfica").append('<optgroup id="'+data.dimension.GEOGRAPHICAL.granularity[i].code+'" label="' +data.dimension.GEOGRAPHICAL.granularity[i].title.es+ '"></optgroup>');
+                $("#SelectRepresentacionGeo").append('<optgroup id="'+data.dimension.GEOGRAPHICAL.granularity[i].code+'" label="' +data.dimension.GEOGRAPHICAL.granularity[i].title.es+ '"class="SelectOption" ></optgroup>');
             }
 
             //Rellenamos Selector de representacion geográfica
             for(var i=0; i<data.dimension.GEOGRAPHICAL.representation.length; i++)
                 $("#" + data.dimension.GEOGRAPHICAL.representation[i].granularityCode).append('<option value=' + data.dimension.GEOGRAPHICAL.representation[i].code + 'class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
 
+            $("#SelectorGranularidadGeo").selectmenu('refresh');
+            $("#SelectRepresentacionGeo").selectmenu('refresh');
 
-            //Añadimos selector de granularidad temporal.
-            $("#SelectorDiv").append('<label class="SelectLabel">Granularidad temporal</label> <select id="SelectorGranularidadTime" class = "Select"></select>');
-
+            //Añadimos opcion base de granularidad temporal.
             $("#SelectorGranularidadTime").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
-            //Añadimos selectores de representación temporal.
-            $("#SelectorDiv").append('<label class="SelectLabel">Representacion Temporal</label> <select id = "SelectRepresentacionTemporal" class = "Select" multiple="multiple"></select>')
-
-            $("#SelectRepresentacionTemporal").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
+            //Añadimos opcion base de representación temporal.
+            $("#SelectRepresentacionTime").append('<option value= "nothing" class="SelectOption" > Ninguna </option>');
 
             //Rellenamos selectores temporales.
             for(var i=0; i<data.dimension.TIME.granularity.length; i++){
                 $("#SelectorGranularidadTime").append('<option value=' + data.dimension.TIME.granularity[i].code + 'class="SelectOption" >' + data.dimension.TIME.granularity[i].title.es +'</option>');
-                $("#SelectRepresentacionTemporal").append('<optgroup id="'+data.dimension.TIME.granularity[i].code+'" label="' +data.dimension.TIME.granularity[i].title.es+ '"></optgroup>');
+                $("#SelectRepresentacionTime").append('<optgroup id="'+data.dimension.TIME.granularity[i].code+'" label="' +data.dimension.TIME.granularity[i].title.es+ '"class="SelectOption" ></optgroup>');
            }
 
             //Rellenamos Selector de representacion temporal
             for(var i=0; i<data.dimension.TIME.representation.length; i++)
                 $("#" + data.dimension.TIME.representation[i].granularityCode).append('<option value=' + data.dimension.TIME.representation[i].code + 'class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
 
-
-
-
+            $("#SelectorGranularidadTime").selectmenu('refresh');
+            $("#SelectRepresentacionTime").selectmenu('refresh');
 
         },
         error:function(jqXHR,textStatus,errorThrown)
@@ -67,4 +59,6 @@ function Peticion_Info_Indicadores(Indicador){
         }
 
     })
+
+    $("#SelectorDiv").toggle();
 }
