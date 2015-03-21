@@ -28,7 +28,7 @@ function Peticion_Info_Indicadores(Indicador){
 
             //Rellenamos Selector de representacion geográfica
             for(var i=0; i<data.dimension.GEOGRAPHICAL.representation.length; i++)
-                $("#" + data.dimension.GEOGRAPHICAL.representation[i].granularityCode).append('<option value=' + data.dimension.GEOGRAPHICAL.representation[i].code + 'class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
+                $("#" + data.dimension.GEOGRAPHICAL.representation[i].granularityCode).append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code +"%"+ data.dimension.GEOGRAPHICAL.representation[i].granularityCode + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
 
             $("#SelectorGranularidadGeo").selectmenu('refresh');
             $("#SelectRepresentacionGeo").selectmenu('refresh');
@@ -41,13 +41,13 @@ function Peticion_Info_Indicadores(Indicador){
 
             //Rellenamos selectores temporales.
             for(var i=0; i<data.dimension.TIME.granularity.length; i++){
-                $("#SelectorGranularidadTime").append('<option value=' + data.dimension.TIME.granularity[i].code + 'class="SelectOption" >' + data.dimension.TIME.granularity[i].title.es +'</option>');
+                $("#SelectorGranularidadTime").append('<option value="' + data.dimension.TIME.granularity[i].code + '" class="SelectOption" >' + data.dimension.TIME.granularity[i].title.es +'</option>');
                 $("#SelectRepresentacionTime").append('<optgroup id="'+data.dimension.TIME.granularity[i].code+'" label="' +data.dimension.TIME.granularity[i].title.es+ '"class="SelectOption" ></optgroup>');
            }
 
             //Rellenamos Selector de representacion temporal
             for(var i=0; i<data.dimension.TIME.representation.length; i++)
-                $("#" + data.dimension.TIME.representation[i].granularityCode).append('<option value=' + data.dimension.TIME.representation[i].code + 'class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
+                $("#" + data.dimension.TIME.representation[i].granularityCode).append('<option value=' + data.dimension.TIME.representation[i].code + "%"+ data.dimension.TIME.representation[i].granularityCode + ' class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
 
             $("#SelectorGranularidadTime").selectmenu('refresh');
             $("#SelectRepresentacionTime").selectmenu('refresh');
