@@ -4,11 +4,13 @@
 function Peticion_Datos(objPeticion){
     var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/';
 
-    var ejemplo = objPeticion.RepresentacionTime[0].split('%');
+    console.log(objPeticion.RepresentacionTime);
 
     //añadimos indicador.
     URL +=  objPeticion.Indicador + '/data?';
     //añadimos Representacion (si la hubiese)
-    URLRepresentacion(objPeticion);
+    URL += URLRepresentacion(objPeticion);
+    URL += '&api_key=special-key';
+    console.log(URL);
 }
 
