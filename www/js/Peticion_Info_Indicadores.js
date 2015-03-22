@@ -18,7 +18,7 @@ function Peticion_Info_Indicadores(Indicador){
 
             //Rellenamos los selectores geográficos.
             for(var i=0; i<data.dimension.GEOGRAPHICAL.granularity.length; i++){
-                $("#SelectorGranularidadGeo").append('<option value=' + data.dimension.GEOGRAPHICAL.granularity[i].code + 'class="SelectOption" >' + data.dimension.GEOGRAPHICAL.granularity[i].title.es +'</option>');
+                $("#SelectorGranularidadGeo").append('<option value=' + data.dimension.GEOGRAPHICAL.granularity[i].code + ' class="SelectOption" >' + data.dimension.GEOGRAPHICAL.granularity[i].title.es +'</option>');
                 $("#SelectRepresentacionGeo").append('<optgroup id="'+data.dimension.GEOGRAPHICAL.granularity[i].code+'" label="' +data.dimension.GEOGRAPHICAL.granularity[i].title.es+ '"class="SelectOption" ></optgroup>');
             }
 

@@ -16,7 +16,6 @@ function CrearObjetoPeticion(){
 
 ////añadimos Representacion a URL de consulta de datos.
 function URLRepresentacion(objPeticion){
-    if(objPeticion.RepresentacionTime != null || objPeticion.RepresentacionGeo != null){
         //Buscando una formas más elegante de hacerlo.
         var RepresentacionGEO;
         var RepresentacionTIME;
@@ -25,7 +24,10 @@ function URLRepresentacion(objPeticion){
             RepresentacionGEO = objPeticion.RepresentacionGeo;
             URLRep += 'representation=GEOGRAPHICAL%5B';
             for(var i = 0; i<RepresentacionGEO.length;i++){
-                URLRep += RepresentacionGEO[i] + '%7C';
+                if(i+1 != RepresentacionGEO.length)
+                    URLRep += RepresentacionGEO[i] + '%7C';
+                else
+                    URLRep += RepresentacionGEO[i];
             }
             URLRep += '%5D';
 
@@ -34,7 +36,10 @@ function URLRepresentacion(objPeticion){
             RepresentacionTIME = objPeticion.RepresentacionTime;
             URLRep += 'representation=TIME%5B';
             for(var i = 0; i<RepresentacionTIME.length;i++){
-                URLRep += RepresentacionTIME[i] + '%7C';
+                if(i+1 != RepresentacionTIME.length )
+                    URLRep += RepresentacionTIME[i] + '%7C';
+                else
+                    URLRep += RepresentacionTIME[i];
             }
             URLRep += '%5D';
         }
@@ -44,16 +49,81 @@ function URLRepresentacion(objPeticion){
             URLRep += 'representation=GEOGRAPHICAL%5B';
 
             for(var i = 0; i<RepresentacionGEO.length;i++){
-                URLRep += RepresentacionGEO[i] + '%7C';
+                if(i+1 != RepresentacionGEO.length)
+                    URLRep += RepresentacionGEO[i] + '%7C';
+                else
+                    URLRep += RepresentacionGEO[i];
             }
             URLRep += '%5D%3ATIME%5B';
 
             for(var i = 0; i<RepresentacionTIME.length;i++){
-                URLRep += RepresentacionTIME[i] + '%7C';
+                if(i+1 != RepresentacionTIME.length )
+                    URLRep += RepresentacionTIME[i] + '%7C';
+                else
+                    URLRep += RepresentacionTIME[i];
             }
             URLRep += '%5D';
         }
        return URLRep;
+
+
+}
+
+//http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/POBLACION_HOMBRES/data?representation=TIME%5B2000%5D&granularity=TIME%5BYEARLY%7CMONTHLY%5D%3AGEOGRAPHICAL%5BISLANDS%5D&api_key=special-key
+
+
+function URLGranularidad(objPeticion){
+
+        //Buscando una formas más elegante de hacerlo.
+    var GranularidadGeo;
+    var GranularidadTime;
+    var URLRep = '';
+
+    if(objPeticion.GranularidadTime == null) {
+        GranularidadGeo = objPeticion.GranularidadGeo;
+        URLRep += 'granularity==GEOGRAPHICAL%5B';
+        for(var i = 0; i<GranularidadGeo.length;i++){
+            if(i+1 != GranularidadGeo.length)
+                URLRep += GranularidadGeo[i] + '%7C';
+            else
+                URLRep += GranularidadGeo[i];
+        }
+        URLRep += '%5D';
+
     }
+    else if(objPeticion.GranularidadGeo == null) {
+        GranularidadTime = objPeticion.GranularidadTime;
+        URLRep += 'granularity=TIME%5B';
+        for(var i = 0; i<GranularidadTime.length;i++){
+            if(i+1 != GranularidadTime.length )
+                URLRep += GranularidadTime[i] + '%7C';
+            else
+                URLRep += GranularidadTime[i];
+        }
+        URLRep += '%5D';
+    }
+    else {
+        GranularidadTime = objPeticion.GranularidadTime;
+        GranularidadGeo = objPeticion.GranularidadGeo;
+        URLRep += 'granularity==GEOGRAPHICAL%5B';
+
+        for(var i = 0; i<GranularidadGeo.length;i++){
+            if(i+1 != GranularidadGeo.length)
+                URLRep += GranularidadGeo[i] + '%7C';
+            else
+                URLRep += GranularidadGeo[i];
+        }
+        URLRep += '%5D%3ATIME%5B';
+
+        for(var i = 0; i<GranularidadTime.length;i++){
+            if(i+1 != GranularidadTime.length )
+                URLRep += GranularidadTime[i] + '%7C';
+            else
+                URLRep += GranularidadTime[i];
+        }
+        URLRep += '%5D';
+    }
+    return URLRep;
+
 
 }
