@@ -8,5 +8,8 @@ function OnchangeSelectorDatos(){
 
 //Evento de cambio de los selectores de representacion para abril el panel.
 function onclickBotonPeticion(){
-    Peticion_Datos(CrearObjetoPeticion());
+    if($("#SelectGrafica").val() == null)
+        alert("Debe elegir almenos una gráfica para representar los datos");
+    else
+        Peticion_Datos(CrearObjetoPeticion());
 }

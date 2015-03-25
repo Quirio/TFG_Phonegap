@@ -1,13 +1,16 @@
 /**
  * Created by Alejandro on 20/03/2015.
  */
+var Graficas = ["Gráfica de Barras", "Gráfica Circular"];
+
 function CrearObjetoPeticion(){
     var ObjPeticion ={
         Indicador: $("#SelectorDatos").val(),
         GranularidadGeo:$("#SelectorGranularidadGeo").val(),
         RepresentacionGeo:$("#SelectRepresentacionGeo").val(),
         GranularidadTime:$("#SelectorGranularidadTime").val(),
-        RepresentacionTime:$("#SelectRepresentacionTime").val()
+        RepresentacionTime:$("#SelectRepresentacionTime").val(),
+        Graficas:$("#SelectGrafica").val()
     };
 
     return ObjPeticion;
@@ -125,5 +128,20 @@ function URLGranularidad(objPeticion){
     }
     return URLRep;
 
+
+}
+
+function Introducir_Graficas(objPeticion){
+    $("#PestañasGráficas").empty();
+    $(".botonGraficas").remove();
+    //añadimos los enlaces a las pestañas
+    var Text = '<ul>';
+    for(var i=0; i<objPeticion.Graficas.length; i++){
+       Text += '<a href="#'+ objPeticion.Graficas[i] + '" data-role="button" role="button" class="ui-btn botonGraficas">' + Graficas[objPeticion.Graficas[i]] + '</a>';
+       $("#PestañasDiv").append('<div id="' + objPeticion.Graficas[i] + '"></div>' );
+    }
+    Text += '</ul>';
+    $("#PestañasGráficas").append(Text);
+    $("#PestañasDiv").tabs( "refresh" );
 
 }

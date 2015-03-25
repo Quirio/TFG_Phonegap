@@ -2,6 +2,7 @@
  * Created by Alejandro on 19/03/2015.
  */
 function Peticion_Datos(objPeticion){
+    Introducir_Graficas(objPeticion);
     var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/';
 
     //añadimos indicador.
@@ -14,6 +15,16 @@ function Peticion_Datos(objPeticion){
     if(objPeticion.GranularidadTime != null || objPeticion.GranularidadGeo != null)
         URL += URLGranularidad(objPeticion);
     URL += '&api_key=special-key';
-    console.log(URL);
+
+    $.ajax({
+        type: "GET",
+        url: URL,
+        dataType: "jsonp",
+        jsonp: "_callback",
+        success: function(data) {
+            console.log(data);
+        }
+    })
+
 }
 

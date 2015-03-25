@@ -38,16 +38,25 @@
                     <label class="SelectLabel">Representacion Temporal</label>
                     <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="false"></select>
 
+                    <label class="SelectLabel">Gráficas De Representación</label>
+                    <select id="SelectGrafica" multiple="multiple" data-native-menu="false">
+                        <option value="0">Gráfico Barras</option>
+                        <option value="1">Gráfico Queso</option>
+                    </select>
+
                     <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">
                 </div>
             </div>
         </div>
 
         <div data-role="footer" class="ui-bar">
-            <a href="index.html" data-role="button">Gráfica1</a>
-            <a href="index.html" data-role="button">Gráfica2</a>
-            <a href="index.html" data-role="button">Gráfica3</a>
-            <a href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Peticion</a>
+             <a href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Peticion</a>
         </div>
+
+        <div data-role="tabs" id="PestañasDiv" >
+            <div data-role="footer" id="PestañasGráficas">
+            </div>
+        </div>
+
     </body>
 </html>

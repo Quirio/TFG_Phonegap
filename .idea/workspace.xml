@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/www/index.html" line="58" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="009f5e49-5aef-412e-b659-111b848fb2ca" name="Default" comment="" />
     <ignored path="TFG_Phonegap.iws" />
@@ -37,21 +40,9 @@
       <file leaf-file-name="Peticion_Info_Indicadores.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/Peticion_Info_Indicadores.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1054">
-              <caret line="20" column="124" selection-start-line="20" selection-start-column="124" selection-end-line="20" selection-end-column="124" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="24" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Eventos.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/js/Eventos.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14798695" vertical-offset="0" max-vertical-offset="919">
-              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
-              <folding>
-                <element signature="n#!!doc;n#OnchangeSelectorDatos#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -59,8 +50,8 @@
       <file leaf-file-name="Peticion_Datos.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/Peticion_Datos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+              <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -69,20 +60,32 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.730769" vertical-offset="110" max-vertical-offset="1003">
-              <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+            <state vertical-scroll-proportion="-27.807692" vertical-offset="263" max-vertical-offset="1156">
+              <caret line="58" column="2" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Metodos.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Metodos.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/Metodos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1338" max-vertical-offset="2244">
-              <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.6247241" vertical-offset="1644" max-vertical-offset="2550">
+              <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
               <folding>
-                <element signature="n#!!doc;n#CrearObjetoPeticion#0" expanded="false" />
+                <element signature="e#0#46#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Eventos.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/Eventos.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="32" />
+              <folding>
+                <element signature="n#!!doc;n#OnchangeSelectorDatos#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -96,10 +99,10 @@
         <option value="$PROJECT_DIR$/www/js/Peticion_Idicadores.js" />
         <option value="$PROJECT_DIR$/www/js/OnchangeEventos.js" />
         <option value="$PROJECT_DIR$/www/css/index.css" />
-        <option value="$PROJECT_DIR$/www/js/Eventos.js" />
-        <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/js/Peticion_Datos.js" />
         <option value="$PROJECT_DIR$/www/js/Peticion_Info_Indicadores.js" />
+        <option value="$PROJECT_DIR$/www/js/Eventos.js" />
+        <option value="$PROJECT_DIR$/www/js/Peticion_Datos.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/Metodos.js" />
       </list>
     </option>
@@ -136,6 +139,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -206,7 +210,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -394,7 +397,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc;n#CrearObjetoPeticion#0" expanded="false" />
+            <element signature="e#0#46#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -446,7 +449,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="289">
           <caret line="9" column="26" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="26" />
           <folding>
-            <element signature="n#!!doc;n#CrearObjetoPeticion#0" expanded="false" />
+            <element signature="e#0#46#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -464,7 +467,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="289">
           <caret line="7" column="25" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="25" />
           <folding>
-            <element signature="n#!!doc;n#CrearObjetoPeticion#0" expanded="false" />
+            <element signature="e#0#46#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -737,46 +740,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/Peticion_Info_Indicadores.js">
+    <entry file="file://$PROJECT_DIR$/www/js/Peticion_Datos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1054">
-          <caret line="20" column="124" selection-start-line="20" selection-start-column="124" selection-end-line="20" selection-end-column="124" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/Peticion_Datos.js">
+    <entry file="file://$PROJECT_DIR$/www/js/Peticion_Info_Indicadores.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.730769" vertical-offset="110" max-vertical-offset="1003">
-          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        <state vertical-scroll-proportion="-27.807692" vertical-offset="263" max-vertical-offset="1156">
+          <caret line="58" column="2" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/Metodos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1338" max-vertical-offset="2244">
-          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
-          <folding>
-            <element signature="n#!!doc;n#CrearObjetoPeticion#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/Eventos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14798695" vertical-offset="0" max-vertical-offset="919">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="32" />
           <folding>
             <element signature="n#!!doc;n#OnchangeSelectorDatos#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/Metodos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6247241" vertical-offset="1644" max-vertical-offset="2550">
+          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#46#0" expanded="false" />
           </folding>
         </state>
       </provider>
