@@ -2,15 +2,15 @@ function Peticion_Info_Indicadores(Indicador){
 
     var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + Indicador + '?api_key=special-key';
 
-    //Vaciamos Selectores.
-    $(".Select").empty();
-
     $.ajax({
         type: "GET",
         url: URL,
         dataType: "jsonp",
         jsonp: "_callback",
         success: function(data){
+
+            //Vaciamos Selectores.
+            $(".Select").empty();
 
             //Añadimos opcion base de granularidad geográfica.
 
@@ -24,7 +24,7 @@ function Peticion_Info_Indicadores(Indicador){
 
             //Rellenamos Selector de representacion geográfica
             for(var i=0; i<data.dimension.GEOGRAPHICAL.representation.length; i++)
-                $("#" + data.dimension.GEOGRAPHICAL.representation[i].granularityCode).append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
+                $("#" + data.dimension.GEOGRAPHICAL.representation[i].granularityCode).append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code +'%' +data.dimension.GEOGRAPHICAL.representation[i].title.es + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
 
             $("#SelectorGranularidadGeo").selectmenu('refresh');
             $("#SelectRepresentacionGeo").selectmenu('refresh');
@@ -53,5 +53,5 @@ function Peticion_Info_Indicadores(Indicador){
 
     })
 
-    $("#SelectorDiv").toggle();
+    $("#SelectorDiv").show();
 }

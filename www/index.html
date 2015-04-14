@@ -1,62 +1,95 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Prueba TFG</title>
-    </head>
-    <body>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/Eventos.js"></script>
-        <script type="text/javascript" src="js/Metodos.js"></script>
-        <script type="text/javascript" src="js/Peticion_Info_Indicadores.js"></script>
-        <script type="text/javascript" src="js/Peticion_Idicadores.js"></script>
-        <script type="text/javascript" src="js/Peticion_Datos.js"></script>
-        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-        <script type="text/javascript">
-            app.initialize();
-            Peticion_Indicadores();
-        </script>
-        <div data-role="panel" id="Panel_Peticion" data-position="left" data-display="overlay">
-            <div>
-                <label class="select">Datos a Consultar</label>
-                <select id="SelectorDatos" onchange="OnchangeSelectorDatos()">
-                </select>
-                <div id = "SelectorDiv">
-                    <label class="SelectLabel">Granularidad geográfica</label>
-                    <select id="SelectorGranularidadGeo" class = "Select" multiple="multiple" data-native-menu="false"></select>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Prueba TFG</title>
+</head>
+<body>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/Eventos.js"></script>
+<script type="text/javascript" src="js/Metodos.js"></script>
+<script type="text/javascript" src="js/Peticion_Info_Indicadores.js"></script>
+<script type="text/javascript" src="js/Peticion_Idicadores.js"></script>
+<script type="text/javascript" src="js/Peticion_Datos.js"></script>
+<script type="text/javascript" src="js/BarChart.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    app.initialize();
+    Peticion_Indicadores();
+    //   CrearBarChart();
+</script>
 
-                    <label class="SelectLabel">Representacion Geográfica</label>
-                    <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false"></select>
+<div data-role="footer" class="ui-bar">
+    <a href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Peticion</a>
+</div>
 
-                    <label class="SelectLabel">Granularidad temporal</label>
-                    <select id="SelectorGranularidadTime" class = "Select" multiple="multiple" data-native-menu="false"></select>
+<div data-role="tabs" id="TabsGraficas">
+      <div data-role="navbar">
+        <ul>
+          <li><a id="BBarras"  href="#Barras" data-ajax="false">Gráfico Barras</a></li>
+          <li><a id="BQueso"  href="#Queso" data-ajax="false">Gráfico Queso</a></li>
+          
+    <li><a id="Btexto"  href="#Texto" data-ajax="false">Datos</a></li>
+    <li><a id="BLineas"  href="#Lineas" data-ajax="false">Gráfico Liíneas</a></li>
+        </ul>
+      </div>
+      <div id="Barras" class="hidden">
+        <h1>First tab contents</h1>
+      </div>
+      <div id="Queso" class="hidden">
+        <h1>second tab contents</h1>
+      </div>
+      <div id="Lineas" class="hidden">
+        <h1>third tab contents</h1>
+      </div>
+      <div id="Texto" class="hidden">
+        <h1 id="TituloDatos"></h1>
+        <ul id="datoslist" data-role="listview">
+        </ul>
+      </div>
+</div>
 
-                    <label class="SelectLabel">Representacion Temporal</label>
-                    <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="false"></select>
 
-                    <label class="SelectLabel">Gráficas De Representación</label>
-                    <select id="SelectGrafica" multiple="multiple" data-native-menu="false">
-                        <option value="0">Gráfico Barras</option>
-                        <option value="1">Gráfico Queso</option>
-                    </select>
+<div data-role="panel" id="Panel_Peticion" data-position="left" data-display="overlay">
+    <div>
+        <label class="select">Datos a Consultar</label>
+        <select id="SelectorDatos" onchange="OnchangeSelectorDatos()">
+        </select>
+        <div id = "SelectorDiv">
+            <label class="SelectLabel">Granularidad geográfica</label>
+            <select id="SelectorGranularidadGeo" class = "Select" multiple="multiple" data-native-menu="false"></select>
 
-                    <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">
-                </div>
-            </div>
+            <label class="SelectLabel">Representacion Geográfica</label>
+            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false"></select>
+
+            <label class="SelectLabel">Granularidad temporal</label>
+            <select id="SelectorGranularidadTime" class = "Select" multiple="multiple" data-native-menu="false"></select>
+
+            <label class="SelectLabel">Representacion Temporal</label>
+            <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="false"></select>
+
+            <!--
+            <label class="SelectLabel">Gráficas De Representación</label>
+            <select id="SelectGrafica" multiple="multiple" data-native-menu="false">
+                <option value="0">Gráfico Barras</option>
+                <option value="1">Gráfico Queso</option>
+            </select>
+            -->
+
+            <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">
         </div>
+    </div>
+</div>
 
-        <div data-role="footer" class="ui-bar">
-             <a href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Peticion</a>
-        </div>
 
-        <div data-role="tabs" id="PestañasDiv" >
-            <div data-role="footer" id="PestañasGráficas">
-            </div>
-        </div>
 
-    </body>
+<script type="text/javascript">
+    //CrearBarChart();
+</script>
+
+</body>
 </html>

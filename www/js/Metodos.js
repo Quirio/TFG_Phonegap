@@ -4,10 +4,33 @@
 var Graficas = ["Gráfica de Barras", "Gráfica Circular"];
 
 function CrearObjetoPeticion(){
+
+    console.log();
+
+    console.log($("#SelectorDatos").val());
+    var IndicadoresNames = $("#SelectorDatos").text().split('. ');
+    var IndicadorNumber =  $("#SelectorDatos").val().split('%')[1];
+    var Georep = $("#SelectRepresentacionGeo").val();
+    var Indicador = $("#SelectorDatos").val().split("%")[0];
+    var IndicadorName = IndicadoresNames[IndicadorNumber];
+
+
+    if(Georep != null) {
+        var Geoval = new Array(Georep.length);
+        var Geonom = new Array(Georep.length);
+        for (var i = 0; i < Georep.length; i++) {
+            var aux = Georep[i].split("%");
+            Geoval[i] = aux[0];
+            Geonom[i] = aux[1];
+        }
+    }
+
     var ObjPeticion ={
-        Indicador: $("#SelectorDatos").val(),
+        Indicador: Indicador,
+        IndicadorName: IndicadorName,
         GranularidadGeo:$("#SelectorGranularidadGeo").val(),
-        RepresentacionGeo:$("#SelectRepresentacionGeo").val(),
+        RepresentacionGeo: Geoval,
+        RepresentacionGeonom: Geonom,
         GranularidadTime:$("#SelectorGranularidadTime").val(),
         RepresentacionTime:$("#SelectRepresentacionTime").val(),
         Graficas:$("#SelectGrafica").val()
@@ -131,17 +154,32 @@ function URLGranularidad(objPeticion){
 
 }
 
-function Introducir_Graficas(objPeticion){
-    $("#PestañasGráficas").empty();
-    $(".botonGraficas").remove();
-    //añadimos los enlaces a las pestañas
-    var Text = '<ul>';
-    for(var i=0; i<objPeticion.Graficas.length; i++){
-       Text += '<a href="#'+ objPeticion.Graficas[i] + '" data-role="button" role="button" class="ui-btn botonGraficas">' + Graficas[objPeticion.Graficas[i]] + '</a>';
-       $("#PestañasDiv").append('<div id="' + objPeticion.Graficas[i] + '"></div>' );
-    }
-    Text += '</ul>';
-    $("#PestañasGráficas").append(Text);
-    $("#PestañasDiv").tabs( "refresh" );
 
-}
+
+/*
+function Introducir_Graficas(objPeticion){
+//  $("#Graptabs").removeClass("hidden").addClass("shown");
+
+  for(var i=0; i<objPeticion.Graficas.length; i++){
+      console.log(objPeticion.Graficas[i]);
+      switch(parseInt(objPeticion.Graficas[i])) {
+          case 0:
+              console.log("barras")
+              ("#BBarras").show();
+              ("#Barras").show();
+              /*$("#BBarras").removeClass("hidden").addClass("shown");
+              $("#Barras").removeClass("hidden").addClass("shown");
+              break;
+          case 1:
+              console.log("queso")
+              $("#BQueso").show();
+              $("#Queso").show();
+
+              /*
+              $("#BQueso").removeClass("hidden").addClass("shown");
+              $("#Queso").removeClass("hidden").addClass("shown");
+              break;
+
+      }
+  }
+}*/

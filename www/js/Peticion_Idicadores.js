@@ -6,8 +6,10 @@ function Peticion_Indicadores(){
         dataType: "jsonp",
         jsonp: "_callback",
         success: function(data){
-            for(var i=0; i<data.total; i++)
-                $("#SelectorDatos").append('<option value=' + data.items[i].id + '>' + data.items[i].title.es +'</option>');
+
+            for(var i=0; i<data.total; i++) {
+                $("#SelectorDatos").append('<option value=' + data.items[i].id + '%' +i+ '>' + data.items[i].title.es + '</option>');
+            }
 
         },
         error:function(jqXHR,textStatus,errorThrown)
