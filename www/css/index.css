@@ -126,3 +126,9 @@ h1 {
 #SelectorDiv{
     display:none;
 }
+
+
+#GraficaBarras{
+    position: absolute;
+    left: 20%;
+}

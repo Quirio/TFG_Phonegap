@@ -29,28 +29,30 @@
 
 <div data-role="tabs" id="TabsGraficas">
       <div data-role="navbar">
-        <ul>
-          <li><a id="BBarras"  href="#Barras" data-ajax="false">Gráfico Barras</a></li>
-          <li><a id="BQueso"  href="#Queso" data-ajax="false">Gráfico Queso</a></li>
-          
-    <li><a id="Btexto"  href="#Texto" data-ajax="false">Datos</a></li>
-    <li><a id="BLineas"  href="#Lineas" data-ajax="false">Gráfico Liíneas</a></li>
-        </ul>
-      </div>
+    <ul>
+        <li><a id="BBarras"  href="#Barras">Gráfico Barras</a></li>
+        <li><a id="BLineas"  href="#Lineas">Gráfico Liíneas</a></li>
+        <li><a id="BQueso"  href="#Queso" >Gráfico de Sectores</a></li>
+        <li><a id="Btexto"  href="#Texto" data-ajax="false">Datos</a></li>
+    </ul>
+           </div>
       <div id="Barras" class="hidden">
-        <h1>First tab contents</h1>
+           <div id="GraficaBarras"></div>
       </div>
       <div id="Queso" class="hidden">
-        <h1>second tab contents</h1>
+        <h1>SECTORES</h1>
       </div>
       <div id="Lineas" class="hidden">
-        <h1>third tab contents</h1>
+        <h1>LINEAS</h1>
       </div>
       <div id="Texto" class="hidden">
         <h1 id="TituloDatos"></h1>
-        <ul id="datoslist" data-role="listview">
-        </ul>
+
+
+    <ul id="datoslist" data-role="listview">
+    </ul>
       </div>
+
 </div>
 
 
@@ -71,14 +73,6 @@
 
             <label class="SelectLabel">Representacion Temporal</label>
             <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="false"></select>
-
-            <!--
-            <label class="SelectLabel">Gráficas De Representación</label>
-            <select id="SelectGrafica" multiple="multiple" data-native-menu="false">
-                <option value="0">Gráfico Barras</option>
-                <option value="1">Gráfico Queso</option>
-            </select>
-            -->
 
             <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">
         </div>
