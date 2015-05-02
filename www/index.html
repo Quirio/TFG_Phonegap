@@ -9,6 +9,8 @@
     <title>Prueba TFG</title>
 </head>
 <body>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/Eventos.js"></script>
 <script type="text/javascript" src="js/Metodos.js"></script>
@@ -16,7 +18,7 @@
 <script type="text/javascript" src="js/Peticion_Idicadores.js"></script>
 <script type="text/javascript" src="js/Peticion_Datos.js"></script>
 <script type="text/javascript" src="js/BarChart.js"></script>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/LineChart.js"></script>
 <script type="text/javascript">
     app.initialize();
     Peticion_Indicadores();
@@ -43,7 +45,7 @@
         <h1>SECTORES</h1>
       </div>
       <div id="Lineas" class="hidden">
-        <h1>LINEAS</h1>
+        <div id="GraficaLineas"></div>
       </div>
       <div id="Texto" class="hidden">
         <h1 id="TituloDatos"></h1>
@@ -82,7 +84,7 @@
 
 
 <script type="text/javascript">
-    //CrearBarChart();
+    CrearLineChart();
 </script>
 
 </body>

@@ -132,3 +132,29 @@ h1 {
     position: absolute;
     left: 20%;
 }
+
+#GraficaLineas{
+    position: absolute;
+    left: 20%;
+}
+
+
+body {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.y.axis path {
+    display: none;
+}
+
+.y.axis line {
+    stroke: #777;
+    stroke-dasharray: 2,2;
+}
