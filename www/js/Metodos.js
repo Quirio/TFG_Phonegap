@@ -154,7 +154,11 @@ function URLGranularidad(objPeticion){
 
 }
 
-
+function LeerJson(){
+    $.getJSON( "indicadores.json", function( data ) {
+        Indicadores = data;
+    });
+}
 
 /*
 function Introducir_Graficas(objPeticion){

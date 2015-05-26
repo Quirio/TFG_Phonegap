@@ -12,6 +12,7 @@
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/MetodosJSON.js"></script>
 <script type="text/javascript" src="js/Eventos.js"></script>
 <script type="text/javascript" src="js/Metodos.js"></script>
 <script type="text/javascript" src="js/Peticion_Info_Indicadores.js"></script>
@@ -20,9 +21,11 @@
 <script type="text/javascript" src="js/BarChart.js"></script>
 <script type="text/javascript" src="js/LineChart.js"></script>
 <script type="text/javascript">
+    var Indicadores;
+    LeerJson();
     app.initialize();
     Peticion_Indicadores();
-    //   CrearBarChart();
+
 </script>
 
 <div data-role="footer" class="ui-bar">
@@ -32,9 +35,9 @@
 <div data-role="tabs" id="TabsGraficas">
       <div data-role="navbar">
     <ul>
-        <li><a id="BBarras"  href="#Barras">Gráfico Barras</a></li>
-        <li><a id="BLineas"  href="#Lineas">Gráfico Liíneas</a></li>
-        <li><a id="BQueso"  href="#Queso" >Gráfico de Sectores</a></li>
+        <li><a id="BBarras"  href="#Barras">G.Barras</a></li>
+        <li><a id="BLineas"  href="#Lineas">G.Liíneas</a></li>
+        <li><a id="BQueso"  href="#Queso" >G.Sectores</a></li>
         <li><a id="Btexto"  href="#Texto" data-ajax="false">Datos</a></li>
     </ul>
            </div>
