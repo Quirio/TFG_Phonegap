@@ -28,6 +28,7 @@ function CrearObjetoPeticion(){
     var ObjPeticion ={
         Indicador: Indicador,
         IndicadorName: IndicadorName,
+        IndicadorNum: IndicadorNumber,
         GranularidadGeo:$("#SelectorGranularidadGeo").val(),
         RepresentacionGeo: Geoval,
         RepresentacionGeonom: Geonom,
@@ -42,7 +43,6 @@ function CrearObjetoPeticion(){
 
 ////añadimos Representacion a URL de consulta de datos.
 function URLRepresentacion(objPeticion){
-        //Buscando una formas más elegante de hacerlo.
         var RepresentacionGEO;
         var RepresentacionTIME;
         var URLRep = '';
@@ -154,36 +154,3 @@ function URLGranularidad(objPeticion){
 
 }
 
-function LeerJson(){
-    $.getJSON( "indicadores.json", function( data ) {
-        Indicadores = data;
-    });
-}
-
-/*
-function Introducir_Graficas(objPeticion){
-//  $("#Graptabs").removeClass("hidden").addClass("shown");
-
-  for(var i=0; i<objPeticion.Graficas.length; i++){
-      console.log(objPeticion.Graficas[i]);
-      switch(parseInt(objPeticion.Graficas[i])) {
-          case 0:
-              console.log("barras")
-              ("#BBarras").show();
-              ("#Barras").show();
-              /*$("#BBarras").removeClass("hidden").addClass("shown");
-              $("#Barras").removeClass("hidden").addClass("shown");
-              break;
-          case 1:
-              console.log("queso")
-              $("#BQueso").show();
-              $("#Queso").show();
-
-              /*
-              $("#BQueso").removeClass("hidden").addClass("shown");
-              $("#Queso").removeClass("hidden").addClass("shown");
-              break;
-
-      }
-  }
-}*/

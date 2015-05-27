@@ -3,7 +3,7 @@
  */
 //Evento de onchange de selector de idicador en el panel de peticion.
 function OnchangeSelectorDatos(){
-    Peticion_Info_Indicadores($("#SelectorDatos").val().split("%")[0]);
+    Peticion_Info_Indicadores($("#SelectorDatos").val().split("%")[0],$("#SelectorDatos").val().split("%")[1]);
 }
 
 //Evento de cambio de los selectores de representacion para abril el panel.

@@ -10,11 +10,15 @@ function CrearBarChart(data,objPeticion){
     console.log(data);
     console.log(objPeticion);
     //var dataset = [40,-100,100,25,36,74,-85,70,-9];
-    var dataset = data.observation;
-    for(var i = 0; i<dataset.length;i++){
-        dataset[i] = parseInt(dataset[i]);
+    var dataset = [];
+    var Observacion= data.observation;
+    //Solo cogemos los valores absolutos.
+    var j=0;
+    for(var i = 2; i< Observacion.length;i=i+3){
+        dataset[j] = parseInt( Observacion[i]);
+        j++;
     }
-
+    console.log(dataset);
     var margin = {top: 0, right: 0, bottom: 10, left: 0},
         w= 960 - margin.left - margin.right,
         h = 50 * dataset.length;
