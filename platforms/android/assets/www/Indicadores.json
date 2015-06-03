@@ -1,0 +1,184 @@
+[
+  {
+    "titulo":"Superficie",
+    "Indicador":"SUPERFICIE",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población",
+    "Indicador":"POBLACION",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Hombres",
+    "Indicador":"POBLACION_HOMBRES",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Mujeres",
+    "Indicador":"POBLACION_MUJERES",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. De 0 a 14 años",
+    "Indicador":"POBLACION_00A14",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. De 15 a 64 años",
+    "Indicador":"POBLACION_15A64",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. De 65 o más años",
+    "Indicador":"POBLACION_65MAS",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Hombres de 0 a 14 años",
+    "Indicador":"POBLACION_HOMBRES_00A14",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Hombres de 15 a 64 años",
+    "Indicador":"POBLACION_HOMBRES_15A64",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Hombres de 65 o más años",
+    "Indicador":"POBLACION_HOMBRES_65MAS",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Mujeres de 0 a 14 años",
+    "Indicador":"POBLACION_MUJERES_00A14",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Mujeres de 15 a 64 años",
+    "Indicador":"POBLACION_MUJERES_15A64",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Población. Mujeres de 65 o más años",
+    "Indicador":"POBLACION_MUJERES_65MAS",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Cabezas de ganado. Bovino",
+    "Indicador":"GANADO_BOVINO",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Cabezas de ganado. Ovino",
+    "Indicador":"GANADO_OVINO",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Cabezas de ganado. Caprino",
+    "Indicador":"GANADO_CAPRINO",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Cabezas de ganado. Porcino",
+    "Indicador":"GANADO_PORCINO",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Energía eléctrica disponible",
+    "Indicador":"ENERGIA_ELECTRICA_DISPONIBLE",
+    "time":"..",
+    "geo":"..",
+    "acumular":".."
+  },
+  {
+    "titulo":"Alojamientos turísticos abiertos",
+    "Indicador":"ALOJATUR_ABIERTOS",
+    "time":"MENSUAL",
+    "geo":"MUNICIPAL",
+    "acumular":"SÍ"
+  },
+  {
+    "titulo":"Plazas ofertadas por alojamientos turísticos",
+    "Indicador":"ALOJATUR_PLAZAS_OFERTADAS",
+    "time":"MENSUAL",
+    "geo":"MUNICIPAL",
+    "acumular":"SÍ"
+  },
+  {
+    "titulo":"Índice censal de ocupación por plazas",
+    "Indicador":"ALOJATUR_PLAZAS_OCUPACION",
+    "time":"MENSUAL",
+    "geo":"MUNICIPAL",
+    "acumular":"SÍ"
+  },
+  {
+    "titulo":"Viajeros entrados en alojamientos turísticos",
+    "Indicador":"ALOJATUR_VIAJEROS_ENTRADOS",
+    "time":"MENSUAL",
+    "geo":"MUNICIPAL",
+    "acumular":"SÍ"
+  },
+  {
+    "titulo":"Pernoctaciones en alojamientos turísticos",
+    "Indicador":"ALOJATUR_PERNOCTACIONES",
+    "time":"MENSUAL",
+    "geo":"MUNICIPAL",
+    "acumular":"SÍ"
+  },
+  {
+    "titulo":"Población turística equivalente en alojamientos turísticos",
+    "Indicador":"ALOJATUR_POBLACION_TUR_ETC",
+    "time":"ANUAL",
+    "geo":"MUNICIPAL",
+    "acumular":".."
+  },
+  {
+    "titulo":"Parque de vehículos",
+    "Indicador":"PARQUE_VEHICULOS",
+    "time":"MENSUAL",
+    "geo":"MUNICIPAL",
+    "acumular":"SÍ"
+  },
+  {
+    "titulo":"Parque de vehículos. Turismos",
+    "Indicador":"PARQUE_VEHICULOS_TURISMOS",
+    "time":"MENSUAL",
+    "geo":"MUNICIPAL",
+    "acumular":"SÍ"
+  }
+]
