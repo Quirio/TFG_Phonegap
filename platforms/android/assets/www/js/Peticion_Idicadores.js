@@ -1,4 +1,5 @@
 function Peticion_Indicadores(){
+    alert("Entro.");
     var path = window.location.href.replace('index.html', '');
     alert(path + 'res/indicadores.json');
    $.getJSON( path + 'res/indicadores.json', function( data ) {
