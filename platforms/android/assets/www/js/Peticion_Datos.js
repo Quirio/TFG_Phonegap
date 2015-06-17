@@ -3,7 +3,7 @@
  */
 function Peticion_Datos(objPeticion) {
 
-    $.getJSON( "indicadores.json", function( data ) {
+    $.getJSON( "res/indicadores.json", function( data ) {
         var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/';
 
         //añadimos indicador.

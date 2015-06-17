@@ -1,6 +1,6 @@
 function Peticion_Info_Indicadores(Indicador,index_Indicador){
 
-    $.getJSON( "indicadores.json", function( data ) {
+    $.getJSON( "res/indicadores.json", function( data ) {
         var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + Indicador + '?api_key=special-key';
         var Indicadores = data;
         console.log(data);
