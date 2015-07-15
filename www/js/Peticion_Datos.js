@@ -3,8 +3,9 @@
  */
 function Peticion_Datos(objPeticion) {
 
-    $.getJSON( "res/indicadores.json", function( data ) {
-        var URL = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/';
+    $.getJSON( 'http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
+        alert("Entro En PDatos.")
+        var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/';
 
         //añadimos indicador.
         URL += objPeticion.Indicador + '/data?';
@@ -63,9 +64,6 @@ function Peticion_Datos(objPeticion) {
                                 j++;
                             }
                         }
-
-
-                        $("#datoslist").append('<li data-role="list-divider"> Dato Absoluto </li>');
                         $("#datoslist").append('<li>' + ArrayResultados[index + 2] + '</li>');
 
 

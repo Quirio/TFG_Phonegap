@@ -8,6 +8,4 @@ function Peticion_Indicadores(){
         }
 
     });
-
-
 }

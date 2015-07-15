@@ -137,13 +137,13 @@ h1 {
 #GraficaLineas{
     position: absolute;
     width: 100%;
-    top: 400px;
+    top: 310px;
 }
 
-#GraficaSectores{
+#Texto{
     position: absolute;
     width: 100%;
-    top: 800px;
+    top: 600px;
 }
 
 

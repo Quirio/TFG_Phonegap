@@ -151,6 +151,5 @@ function URLGranularidad(objPeticion){
     }
     return URLRep;
 
-
 }
 
