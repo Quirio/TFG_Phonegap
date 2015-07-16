@@ -15,9 +15,19 @@ function onclickBotonPeticion(){
 
 //Evento para limpiar petición.
 function onclickBotonLimpiar(){
-    $( "#SelectorDatos" ).selectmenu( "refresh" );
-    $( "#SelectRepresentacionGeo" ).selectmenu( "refresh" );
-    $( "#SelectRepresentacionTime" ).selectmenu( "refresh" );
+    //Limpiamos el selectable de geografica.
+    $("#SelectRepresentacionGeo").prepend('<option id=opcionvacia></option>');
+    var myselect = $("#SelectRepresentacionGeo");
+    myselect[0].selectedIndex=0;
+    myselect.selectmenu("refresh");
+    $("#opcionvacia").remove();
+
+    //Limpiamos el selectable temporal
+    $("#SelectRepresentacionTime").prepend('<option id=opcionvacia></option>');
+    var myselect = $("#SelectRepresentacionTime");
+    myselect[0].selectedIndex=0;
+    myselect.selectmenu("refresh");
+    $("#opcionvacia").remove();
 }
 
 /*

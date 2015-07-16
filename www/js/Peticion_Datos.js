@@ -32,7 +32,7 @@ function Peticion_Datos(objPeticion) {
             success: function (data) {
 
                 $("#TituloDatos").empty();
-                $("#datoslist").empty();
+                $("#titulograficas").empty();
 
                 if (objPeticion.RepresentacionTime != null || objPeticion.RepresentacionGeo != null) {
                     var POS0 = 0;
