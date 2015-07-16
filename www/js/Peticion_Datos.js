@@ -43,6 +43,7 @@ function Peticion_Datos(objPeticion) {
                     var TimeIndex = data.dimension.TIME.representation.size;
                     var GeoIndex = data.dimension.GEOGRAPHICAL.representation.size;
                     var MeasureIndex = data.dimension.MEASURE.representation.size;
+                    var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index);
                     var ArrayResultados = data.observation;
                     var n = ArrayResultados.length;
 
@@ -58,79 +59,26 @@ function Peticion_Datos(objPeticion) {
                     }
 
                     var z=0;
+                    console.log(ArrayORdenGEO);
+                    console.log(objPeticion.RepresentacionTime);
+
                     for(var i=0; i<objPeticion.RepresentacionGeo.length; i++){
-                        $("#Cuerpo").append('<tr id="'+objPeticion.RepresentacionGeo[i]+'"><th id="TituloVertical">'+ objPeticion.RepresentacionGeonom[i] +'</th></tr>');
+                        var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
+                        $("#Cuerpo").append('<tr id="'+objPeticion.RepresentacionGeo[index]+'"><th id="TituloVertical">'+ objPeticion.RepresentacionGeonom[index] +'</th></tr>');
                         for(var j=0; j<objPeticion.RepresentacionTime.length; j++){
-                            $("#"+objPeticion.RepresentacionGeo[i]).append('<th>'+ ArrayResultados[z] +'</th>');
+                            $("#"+objPeticion.RepresentacionGeo[index]).append('<th>'+ ArrayResultados[z] +'</th>');
                             z = z+3;
                         }
                     }
 
                     $( "#TablaDatos" ).table( "refresh" );
 
-
-                    /*
-                     <thead>
-                     <tr id="Titulo">
-                     <th>Rank</th>
-                     <th>Movie Title</th>
-                     <th>Year</th>
-                     <th><abbr title="Rotten Tomato Rating">Rating</abbr></th>
-                     <th>Reviews</th>
-                     </tr>
-                     </thead>
-                     <tbody>
-                     <tr>
-                     <th>1</th>
-                     <td><a href="foo.com" data-rel="external">Citizen Kane</a></td>
-                     <td>1941</td>
-                     <td>100%</td>
-                     <td>74</td>
-                     </tr>
-                     </tbody>
-                     */
-
-/*
-                    for (var index = 0; index < n; index += 3) {
-
-                        if (objPeticion.RepresentacionGeo != null) {
-                            if (Geo(index, n, GeoIndex) == 0) {
-                                $("#datoslist").append('<li data-role="list-divider">' + objPeticion.RepresentacionGeonom[i] + '</li>');
-                                i++;
-                                j = 0;
-                            }
-                        }
-
-                        if (objPeticion.RepresentacionTime != null) {
-                            if (Time(index, n, GeoIndex, TimeIndex) == 0) {
-                                $("#datoslist").append('<li data-role="list-divider">' + objPeticion.RepresentacionTime[j] + '</li>');
-                                j++;
-                            }
-                        }
-                        $("#datoslist").append('<li>' + ArrayResultados[index + 2] + '</li>');
-
-
-                    }
-                    */
                 }
 
-                $("#datoslist").listview("refresh");
-
-
-                CrearBarChart(data,objPeticion);
-
-                CrearLineChart();
-
-
-
-
-
+                CrearBarChart(data,objPeticion,ArrayORdenGEO);
             }
         })
     })
-    /*
-
-     */
 }
 
 

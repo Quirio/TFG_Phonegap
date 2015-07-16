@@ -12,3 +12,26 @@ function onclickBotonPeticion(){
     $(".tabs").tabs( "option", "active", 0 );
     Peticion_Datos(CrearObjetoPeticion());
 }
+
+//Evento para limpiar petición.
+function onclickBotonLimpiar(){
+    $( "#SelectorDatos" ).selectmenu( "refresh" );
+    $( "#SelectRepresentacionGeo" ).selectmenu( "refresh" );
+    $( "#SelectRepresentacionTime" ).selectmenu( "refresh" );
+}
+
+/*
+ <label class="select">Datos a Consultar</label>
+ <select id="SelectorDatos" onchange="OnchangeSelectorDatos()">
+ </select>
+ <div id = "SelectorDiv">
+
+ <label class="SelectLabel">Representacion Geográfica</label>
+ <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false"></select>
+
+ <label class="SelectLabel">Representacion Temporal</label>
+ <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="false"></select>
+
+ <input id="BotonLimpiar" type="button" value="Reiniciar" onclick="onclickBotonLimpiar()">
+ <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">
+ */

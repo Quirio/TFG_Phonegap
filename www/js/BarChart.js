@@ -1,5 +1,5 @@
 
-function CrearBarChart(data,objPeticion)
+function CrearBarChart(data,objPeticion,ArrayORdenGEO)
 {
     //Gráfico de barras
     $("#GraficaBarras").empty();
@@ -15,7 +15,8 @@ function CrearBarChart(data,objPeticion)
             z=z+3;
         }
         datos.push(datgeo);
-        leyenda.push({label:objPeticion.RepresentacionGeonom[i]});
+        var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
+        leyenda.push({label:objPeticion.RepresentacionGeonom[index]});
     }
 
     console.log(datos);
