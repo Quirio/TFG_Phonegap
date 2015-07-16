@@ -6,11 +6,12 @@ function CrearBarChart(data,objPeticion)
     var obser = data.observation;
     var datos = [];
     var leyenda = [];
-    var z = 2;
+    var z = 0;
     for(var i=0; i<objPeticion.RepresentacionGeonom.length;i++){
         var datgeo = []
         for(var j=0; j<objPeticion.RepresentacionTime.length;j++){
             datgeo.push(parseInt(obser[z]));
+            console.log(obser[z]);
             z=z+3;
         }
         datos.push(datgeo);

@@ -129,21 +129,16 @@ h1 {
 
 
 #GraficaBarras{
-    position: absolute;
     width: 100%;
 
 }
 
 #GraficaLineas{
-    position: absolute;
     width: 100%;
-    top: 310px;
 }
 
 #Texto{
-    position: absolute;
     width: 100%;
-    top: 600px;
 }
 
 

@@ -4,7 +4,6 @@
 function Peticion_Datos(objPeticion) {
 
     $.getJSON( 'http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
-        alert("Entro En PDatos.")
         var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/';
 
         //añadimos indicador.
@@ -24,6 +23,7 @@ function Peticion_Datos(objPeticion) {
         // URL += 'granularity==GEOGRAPHICAL%5B' + ;
 
         URL += '&api_key=special-key';
+        console.log(URL);
         $.ajax({
             type: "GET",
             url: URL,
@@ -46,8 +46,51 @@ function Peticion_Datos(objPeticion) {
                     var ArrayResultados = data.observation;
                     var n = ArrayResultados.length;
 
-                    $("#TituloDatos").append(objPeticion.IndicadorName);
+                    $("#TituloDatos").append($("#SelectorDatos-button span").text());
+                    $("#titulograficas").append($("#SelectorDatos-button span").text());
+                    $("#TablaDatos").empty();
 
+                    $("#TablaDatos").append('<thead><tr id="Titulo"></tr></thead><tbody id="Cuerpo"></tbody>');
+
+                    $("#Titulo").append('<th></th>');
+                    for(var i=0; i<objPeticion.RepresentacionTime.length;i++){
+                        $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
+                    }
+
+                    var z=0;
+                    for(var i=0; i<objPeticion.RepresentacionGeo.length; i++){
+                        $("#Cuerpo").append('<tr id="'+objPeticion.RepresentacionGeo[i]+'"><th id="TituloVertical">'+ objPeticion.RepresentacionGeonom[i] +'</th></tr>');
+                        for(var j=0; j<objPeticion.RepresentacionTime.length; j++){
+                            $("#"+objPeticion.RepresentacionGeo[i]).append('<th>'+ ArrayResultados[z] +'</th>');
+                            z = z+3;
+                        }
+                    }
+
+                    $( "#TablaDatos" ).table( "refresh" );
+
+
+                    /*
+                     <thead>
+                     <tr id="Titulo">
+                     <th>Rank</th>
+                     <th>Movie Title</th>
+                     <th>Year</th>
+                     <th><abbr title="Rotten Tomato Rating">Rating</abbr></th>
+                     <th>Reviews</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     <tr>
+                     <th>1</th>
+                     <td><a href="foo.com" data-rel="external">Citizen Kane</a></td>
+                     <td>1941</td>
+                     <td>100%</td>
+                     <td>74</td>
+                     </tr>
+                     </tbody>
+                     */
+
+/*
                     for (var index = 0; index < n; index += 3) {
 
                         if (objPeticion.RepresentacionGeo != null) {
@@ -68,11 +111,11 @@ function Peticion_Datos(objPeticion) {
 
 
                     }
+                    */
                 }
 
                 $("#datoslist").listview("refresh");
 
-                //  console.log(Resultados);
 
                 CrearBarChart(data,objPeticion);
 
