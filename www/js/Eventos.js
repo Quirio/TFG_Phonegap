@@ -4,6 +4,7 @@
 //Evento de onchange de selector de idicador en el panel de peticion.
 function OnchangeSelectorDatos(){
     $(".tabs").tabs( "option", "active", 0 );
+    $("#BotonPeticion").button( "disable" );
     Peticion_Info_Indicadores($("#SelectorDatos").val().split("%")[0],$("#SelectorDatos").val().split("%")[1]);
 }
 
@@ -11,6 +12,15 @@ function OnchangeSelectorDatos(){
 function onclickBotonPeticion(){
     $(".tabs").tabs( "option", "active", 0 );
     Peticion_Datos(CrearObjetoPeticion());
+}
+
+function OnchangebotonesGranularidad(){
+    if($("#SelectRepresentacionGeo").val() == null || $("#SelectRepresentacionTime").val() == null)
+        $("#BotonPeticion").button( "disable" );
+    else
+        $("#BotonPeticion").button( "enable" );
+    $("#BotonPeticion").button( "refresh" );
+
 }
 
 //Evento para limpiar petición.
@@ -28,6 +38,7 @@ function onclickBotonLimpiar(){
     myselect[0].selectedIndex=0;
     myselect.selectmenu("refresh");
     $("#opcionvacia").remove();
+    $("#BotonPeticion").button( "disable" );
 }
 
 /*

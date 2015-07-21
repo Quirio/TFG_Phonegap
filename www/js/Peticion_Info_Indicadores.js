@@ -1,6 +1,6 @@
 function Peticion_Info_Indicadores(Indicador,index_Indicador){
 
-    $.getJSON('http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
+    $.getJSON('http://banot.etsii.ull.es/alu4403/Vistac/Indicadores1.json', function( data ) {
         var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/' + Indicador + '?api_key=special-key';
         var Indicadores = data;
         console.log(URL);

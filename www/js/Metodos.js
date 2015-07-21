@@ -33,7 +33,7 @@ function CrearObjetoPeticion(){
         RepresentacionGeo: Geoval,
         RepresentacionGeonom: Geonom,
         GranularidadTime:$("#SelectorGranularidadTime").val(),
-        RepresentacionTime:$("#SelectRepresentacionTime").val(),
+        RepresentacionTime:$("#SelectRepresentacionTime").val()
     };
 
     return ObjPeticion;

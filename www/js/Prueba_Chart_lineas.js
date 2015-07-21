@@ -3,6 +3,7 @@ function CrearBarChart(data,objPeticion)
 {
     $("#GraficaBarras").empty();
     var obser = data.observation;
+    var MeasureIndex = data.dimension.MEASURE.representation.size;
     var datos = [];
     var leyenda = [];
     var z = 2;
@@ -10,7 +11,7 @@ function CrearBarChart(data,objPeticion)
         var datgeo = []
         for(var j=0; j<objPeticion.RepresentacionTime.length;j++){
             datgeo.push(parseInt(obser[z]));
-            z=z+3;
+            z=z+MeasureIndex;
         }
         datos.push(datgeo);
         leyenda.push({label:objPeticion.RepresentacionGeonom[i]});
