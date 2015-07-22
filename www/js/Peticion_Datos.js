@@ -3,11 +3,14 @@
  */
 function Peticion_Datos(objPeticion) {
 
-    $.getJSON( 'http://banot.etsii.ull.es/alu4403/Vistac/Indicadores1.json', function( data ) {
+    $.getJSON( 'http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
         var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/';
         var Indicadores;
         var JSONindi = data;
         var Operadores;
+        var flagmulfin = false;
+        var derivadoflag = false;
+        var mulfin = 1;
         var IdicadoresURL = [];
         var DatosPeticiones = [];
         var DatosFinales =[];
@@ -20,7 +23,13 @@ function Peticion_Datos(objPeticion) {
         }
 
         else{
+            derivadoflag = true;
             Indicadores = data[objPeticion.IndicadorNum].calculo.replace("(",'').replace(")",'').split(/\*|\+|\//);
+
+            if(Indicadores[Indicadores.length-1]=="1000" || Indicadores[Indicadores.length-1]=="100"){
+                mulfin = Indicadores.pop();
+                console.log(mulfin);
+            }
             Operadores = data[objPeticion.IndicadorNum].calculo.replace("(",'').replace(")",'').match(/\W/g);
             console.log(Operadores);
             for(var i=0; i<Indicadores.length; i++)
@@ -52,6 +61,9 @@ function Peticion_Datos(objPeticion) {
             z++;
         }
 
+        $("#TituloDatos").empty();
+        $("#titulograficas").empty();
+
         //Peticion en caso de no derivado.
         if( data[objPeticion.IndicadorNum].derivado == "NO") {
             $.ajax({
@@ -61,8 +73,7 @@ function Peticion_Datos(objPeticion) {
                 jsonp: "_callback",
                 success: function (data) {
 
-                    $("#TituloDatos").empty();
-                    $("#titulograficas").empty();
+
 
                     if (objPeticion.RepresentacionTime != null || objPeticion.RepresentacionGeo != null) {
                         var POS0 = 0;
@@ -119,7 +130,7 @@ function Peticion_Datos(objPeticion) {
 
                     }
 
-                    CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag);
+                    CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag);
                 }
             })
         }
@@ -160,31 +171,11 @@ function Peticion_Datos(objPeticion) {
                                var n = ArrayResultados.length;
                                var ArrayDatosIndicador = []
 
-                               /*
-                                $("#TituloDatos").append($("#SelectorDatos-button span").text());
-                                $("#titulograficas").append($("#SelectorDatos-button span").text());
-                                $("#TablaDatos").empty();
-
-                                $("#TablaDatos").append('<thead><tr id="Titulo"></tr></thead><tbody id="Cuerpo"></tbody>');
-
-                                $("#Titulo").append('<th></th>');
-                                for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
-                                $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
-                                }
-
-
-                                $(window).on("orientationchange", function (event) {
-                                $(".tabs").tabs("option", "active", 0);
-                                CrearBarChart(data, objPeticion, ArrayORdenGEO);
-                                })
-                                */
-
-
                                var z = 0;
                                for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
                                    for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
                                        ArrayDatosIndicador.push(ArrayResultados[z]);
-                                       z = z + 3;
+                                       z = z + MeasureIndex;
 
                                    }
                                }
@@ -232,13 +223,50 @@ function Peticion_Datos(objPeticion) {
                                    }
 
 
-                                   DatosFinales.push(DatoOPiqz / DatoOPderch)
+                                   DatosFinales.push((DatoOPiqz / DatoOPderch)*mulfin);
                                }
+
+
+                                $("#TituloDatos").append($("#SelectorDatos-button span").text());
+                                $("#titulograficas").append($("#SelectorDatos-button span").text());
+                                $("#TablaDatos").empty();
+
+                                $("#TablaDatos").append('<thead><tr id="Titulo"></tr></thead><tbody id="Cuerpo"></tbody>');
+
+                                $("#Titulo").append('<th></th>');
+                                for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
+                                    $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
+                                }
+
+                                $(window).on("orientationchange", function (event) {
+                                $(".tabs").tabs("option", "active", 0);
+                                CrearBarChart(data, objPeticion, ArrayORdenGEO);
+                                })
+
+                               var z = 0;
+                               for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
+                                   var acumulado =0;
+                                   var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
+                                   $("#Cuerpo").append('<tr id="' + objPeticion.RepresentacionGeo[index] + '"><th id="TituloVertical">' + objPeticion.RepresentacionGeonom[index] + '</th></tr>');
+                                   for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
+
+                                       if(JSONindi[objPeticion.IndicadorNum].acumular == "SI") {
+                                           acumulado += parseFloat(DatosFinales[z]);
+                                           $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + acumulado +  '</th>');
+                                       }
+                                       else
+                                           $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + DatosFinales[z] + '</th>');
+                                       z++ ;
+                                   }
+                               }
+
+                            CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,derivadoflag);
+
                            }
 
                            console.log(DatosFinales);
 
-                           // CrearBarChart(data, objPeticion, ArrayORdenGEO);
+
                        }
                    }).done(function(){
                        PericionAJAXData(IdicadoresURL[p+1],p+1);

@@ -1,6 +1,6 @@
 function Peticion_Info_Indicadores(Indicador,index_Indicador){
 
-    $.getJSON('http://banot.etsii.ull.es/alu4403/Vistac/Indicadores1.json', function( data ) {
+    $.getJSON('http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
         var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/' + Indicador + '?api_key=special-key';
         var Indicadores = data;
         console.log(URL);
@@ -10,6 +10,8 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
             dataType: "jsonp",
             jsonp: "_callback",
             success: function (data) {
+
+                console.log(data);
 
                 //Vaciamos Selectores.
                 $(".Select").empty();
@@ -34,9 +36,10 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
 
                 //Rellenamos Selector de representacion temporal
                 for (var i = 0; i < data.dimension.TIME.representation.length; i++) {
-                    if(Indicadores[index_Indicador].time == "ANUAL")
+                    console.log(data.dimension.TIME.representation[i].granularityCode);
+                    if(data.dimension.TIME.representation[i].granularityCode == Indicadores[index_Indicador].time)
                         $("#YEARLY").append('<option value=' + data.dimension.TIME.representation[i].code + ' class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
-                    else  if(Indicadores[index_Indicador].time == "MENSUAL")
+                    else if(data.dimension.TIME.representation[i].granularityCode== Indicadores[index_Indicador].time)
                         $("#MONTHLY").append('<option value=' + data.dimension.TIME.representation[i].code + ' class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
 
 

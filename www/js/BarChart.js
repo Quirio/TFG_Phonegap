@@ -1,33 +1,58 @@
 
-function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular)
+function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
 {
     //Gráfico de barras
     $("#GraficaBarras").empty();
-    var obser = data.observation;
-    var MeasureIndex = data.dimension.MEASURE.representation.size;
     var datos = [];
     var leyenda = [];
     var z = 0;
-    for(var i=0; i<objPeticion.RepresentacionGeonom.length;i++){
-        var datgeo = []
-        var acumulado = 0;
-        for(var j=0; j<objPeticion.RepresentacionTime.length;j++){
-            if(Acumular){
-                acumulado += parseInt(obser[z]);
-                datgeo.push(acumulado);
-                console.log(acumulado);
-            }
-            else {
-                datgeo.push(parseInt(obser[z]));
-                console.log(parseInt(obser[z]));
-            }
 
-            z = z + MeasureIndex;
+    if(!derivado) {
+        var obser = data.observation;
+        var MeasureIndex = data.dimension.MEASURE.representation.size;
+        for (var i = 0; i < objPeticion.RepresentacionGeonom.length; i++) {
+            var datgeo = []
+            var acumulado = 0;
+            for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
+                if (Acumular) {
+                    acumulado += parseInt(obser[z]);
+                    datgeo.push(acumulado);
+                    console.log(acumulado);
+                }
+                else {
+                    datgeo.push(parseInt(obser[z]));
+                    console.log(parseInt(obser[z]));
+                }
 
+                z = z + MeasureIndex;
+
+            }
+            datos.push(datgeo);
+            var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
+            leyenda.push({label: objPeticion.RepresentacionGeonom[index]});
         }
-        datos.push(datgeo);
-        var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
-        leyenda.push({label:objPeticion.RepresentacionGeonom[index]});
+    }
+
+    else{
+        for (var i = 0; i < objPeticion.RepresentacionGeonom.length; i++) {
+            var datgeo = []
+            var acumulado = 0;
+            for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
+                if (Acumular) {
+                    acumulado += parseInt(data[z]);
+                    datgeo.push(acumulado);
+                }
+                else {
+                    datgeo.push(parseInt(data[z]));
+                }
+
+                z++;
+
+            }
+            datos.push(datgeo);
+            var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
+            leyenda.push({label: objPeticion.RepresentacionGeonom[index]});
+        }
     }
 
     var ticks = objPeticion.RepresentacionTime;
