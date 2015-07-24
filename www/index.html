@@ -39,6 +39,20 @@
     <center><h1>Vistac: Coyuntura</h1></center>
 </div>
 
+<div data-role="popup" id="popupLoader" data-transition="pop" >
+        <img src="img/loader.gif" alt="Loading..."/>
+</div>
+
+<script type="text/javascript">
+    $( document ).ajaxStart(function () {
+        console.log("Cago ento");
+        $('#popupLoader').popup( "open" );
+    }).ajaxStop(function () {
+        $('#popupLoader').popup( "close" );
+    });
+</script>
+
+
 <div id="tabs" class="tabs" data-role="tabs" id="TabsGraficas">
     <div data-role="navbar">
         <ul>

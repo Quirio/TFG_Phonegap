@@ -208,7 +208,7 @@
   },
   {
     "titulo": "Densidad de población",
-    "Indicador": "SUPERFICIE",
+    "Indicador": "POBLACION",
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
@@ -217,7 +217,7 @@
   },
   {
     "titulo": "Densidad de población más población turística",
-    "Indicador": "SUPERFICIE",
+    "Indicador": "POBLACION",
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
