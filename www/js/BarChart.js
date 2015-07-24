@@ -5,11 +5,13 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
     $("#GraficaBarras").empty();
     var datos = [];
     var leyenda = [];
-    var z = 0;
+
 
     if(!derivado) {
         var obser = data.observation;
+        console.log(obser);
         var MeasureIndex = data.dimension.MEASURE.representation.size;
+        var z = MeasureIndex-1;
         for (var i = 0; i < objPeticion.RepresentacionGeonom.length; i++) {
             var datgeo = []
             var acumulado = 0;
@@ -17,23 +19,26 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
                 if (Acumular) {
                     acumulado += parseInt(obser[z]);
                     datgeo.push(acumulado);
-                    console.log(acumulado);
+                    //console.log(acumulado);
                 }
                 else {
                     datgeo.push(parseInt(obser[z]));
-                    console.log(parseInt(obser[z]));
+                   // console.log(parseInt(obser[z]));
                 }
 
                 z = z + MeasureIndex;
 
             }
             datos.push(datgeo);
+
             var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
             leyenda.push({label: objPeticion.RepresentacionGeonom[index]});
         }
     }
 
+
     else{
+        var z = 0;
         for (var i = 0; i < objPeticion.RepresentacionGeonom.length; i++) {
             var datgeo = []
             var acumulado = 0;
@@ -55,6 +60,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
         }
     }
 
+    console.log(datos);
     var ticks = objPeticion.RepresentacionTime;
 
     var plot1 = $.jqplot('GraficaBarras', datos , {

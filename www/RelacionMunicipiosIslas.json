@@ -1,0 +1,452 @@
+{  
+   "38001":{  
+      "code":"38001",
+      "title":"Adeje",
+      "island":"Tenerife"
+   },
+   "35001":{  
+      "code":"35001",
+      "title":"Agaete",
+      "island":"Gran Canaria"
+   },
+   "35002":{  
+      "code":"35002",
+      "title":"Agüimes",
+      "island":"Gran Canaria"
+   },
+   "38002":{  
+      "code":"38002",
+      "title":"Agulo",
+      "island":"La Gomera"
+   },
+   "38003":{  
+      "code":"38003",
+      "title":"Alajeró",
+      "island":"La Gomera"
+   },
+   "35020":{  
+      "code":"35020",
+      "title":"Aldea de San Nicolás (La)",
+      "island":"Gran Canaria"
+   },
+   "35003":{  
+      "code":"35003",
+      "title":"Antigua",
+      "island":"Fuerteventura"
+   },
+   "38004":{  
+      "code":"38004",
+      "title":"Arafo",
+      "island":"Tenerife"
+   },
+   "38005":{  
+      "code":"38005",
+      "title":"Arico",
+      "island":"Tenerife"
+   },
+   "38006":{  
+      "code":"38006",
+      "title":"Arona",
+      "island":"Tenerife"
+   },
+   "38004":{  
+      "code":"38004",
+      "title":"Arrecife",
+      "island":"Lanzarote"
+   },
+   "38005":{  
+      "code":"38005",
+      "title":"Artenara",
+      "island":"Gran Canaria"
+   },
+   "35006":{  
+      "code":"35006",
+      "title":"Arucas",
+      "island":"Gran Canria"
+   },
+   "38007":{  
+      "code":"38007",
+      "title":"Barlovento",
+      "island":"La Palma"
+   },
+   "35007":{  
+      "code":"35007",
+      "title":"Betancuria",
+      "island":"Fuerteventura"
+   },
+   "38008":{  
+      "code":"38008",
+      "title":"Breña Alta",
+      "island":"La Palma"
+   },
+   "38009":{  
+      "code":"38009",
+      "title":"Breña Baja",
+      "island":"La Palma"
+   },
+   "38010":{  
+      "code":"38010",
+      "title":"Buenavista del Norte",
+      "island":"Tenerife"
+   },
+   "38011":{  
+      "code":"38011",
+      "title":"Candelaria",
+      "island":"Tenerife"
+   },
+   "38012":{  
+      "code":"38012",
+      "title":"Fasnia",
+      "island":"Tenerife"
+   },
+   "35008":{  
+      "code":"35008",
+      "title":"Firgas",
+      "island":"Gran Canaria"
+   },
+   "38013":{  
+      "code":"38013",
+      "title":"Frontera",
+      "island":"El Hierro"
+   },
+   "38014":{  
+      "code":"38014",
+      "title":"Fuencaliente de La Palma",
+      "island":"La Palma"
+   },
+   "35009":{  
+      "code":"35009",
+      "title":"Gáldar",
+      "island":"Gran Canaria"
+   },
+   "38015":{  
+      "code":"38015",
+      "title":"Garachico",
+      "island":"Tenerife"
+   },
+   "38016":{  
+      "code":"38016",
+      "title":"Garafía",
+      "island":"La Palma"
+   },
+   "38017":{  
+      "code":"38017",
+      "title":"Granadilla de Abona",
+      "island":"Tenerife"
+   },
+   "38018":{  
+      "code":"38018",
+      "title":"Guancha (La)",
+      "island":"Tenerife"
+   },
+   "38019":{  
+      "code":"38019",
+      "title":"Guía de Isora",
+      "island":"Tenerife"
+   },
+   "38020":{  
+      "code":"38020",
+      "title":"Güímar",
+      "island":"Tenerife"
+   },
+   "35010":{  
+      "code":"35010",
+      "title":"Haría",
+      "island":"Lanzarote"
+   },
+   "38021":{  
+      "code":"38021",
+      "title":"Hermigua",
+      "island":"La Gomera"
+   },
+   "38022":{  
+      "code":"38022",
+      "title":"Icod de los Vinos",
+      "island":"Tenerife"
+   },
+   "35011":{  
+      "code":"35011",
+      "title":"Ingenio",
+      "island":"Gran Canaria"
+   },
+   "38024":{  
+      "code":"38024",
+      "title":"lanos de Aridane (Los)",
+      "island":"La Palma"
+   },
+   "38025":{  
+      "code":"38025",
+      "title":"Matanza de Acentejo (La)",
+      "island":"Tenerife"
+   },
+   "35012":{  
+      "code":"35012",
+      "title":"Mogán",
+      "island":"Gran Canaria"
+   },
+   "35012":{  
+      "code":"35012",
+      "title":"Mogán",
+      "island":"Gran Canaria"
+   },
+   "35013":{  
+      "code":"35013",
+      "title":"Moya",
+      "island":"Gran Canaria"
+   },
+   "35014":{  
+      "code":"35014",
+      "title":"Oliva (La)",
+      "island":"Fuerteventura"
+   },
+   "38026":{  
+      "code":"38026",
+      "title":"Orotava (La)",
+      "island":"Tenerife"
+   },
+   "35015":{  
+      "code":"35015",
+      "title":"Pájara",
+      "island":"Fuerteventura"
+   },
+   "35016":{  
+      "code":"35016",
+      "title":"Palmas de Gran Canaria (Las)",
+      "island":"Gran Canaria"
+   },
+   "38027":{  
+      "code":"38027",
+      "title":"Paso (El)",
+      "island":"La Palma"
+   },
+   "38901":{  
+      "code":"38901",
+      "title":"Pinar de El Hierro (El)",
+      "island":"El Hierro"
+   },
+   "38028":{  
+      "code":"38028",
+      "title":"Puerto de La Cruz",
+      "island":"Tenerife"
+   },
+   "35017":{  
+      "code":"35017",
+      "title":"Puerto del Rosario",
+      "island":"Fuerteventura"
+   },
+   "38029":{  
+      "code":"38029",
+      "title":"Puntagorda",
+      "island":"La Palma"
+   },
+   "38030":{  
+      "code":"38030",
+      "title":"Puntallana",
+      "island":"La Palma"
+   },
+   "38030":{  
+      "code":"38030",
+      "title":"Puntallana",
+      "island":"La Palma"
+   },
+   "38031":{  
+      "code":"38031",
+      "title":"Realejos (Los)",
+      "island":"Tenerife"
+   },
+   "38032":{  
+      "code":"38032",
+      "title":"Rosario (El)",
+      "island":"Tenerife"
+   },
+   "38033":{  
+      "code":"38033",
+      "title":"San Andrés y Sauces",
+      "island":"La Palma"
+   },
+   "35018":{  
+      "code":"35018",
+      "title":"San Bartolomé",
+      "island":"Lanzarote"
+   },
+   "35019":{  
+      "code":"35018",
+      "title":"San Bartolomé de Tirajana",
+      "island":"Gran Canaria"
+   },
+   "38023":{  
+      "code":"38023",
+      "title":"San Cristóbal de La Laguna",
+      "island":"Tenerife"
+   },
+   "38034":{  
+      "code":"38034",
+      "title":"San Juan de la Rambla",
+      "island":"Tenerife"
+   },
+   "38035":{  
+      "code":"38035",
+      "title":"San Miguel de Abona",
+      "island":"Tenerife"
+   },
+   "38036":{  
+      "code":"38036",
+      "title":"San Sebastián de La Gomera",
+      "island":"La Gomera"
+   },
+   "35021":{  
+      "code":"35021",
+      "title":"Santa Brígida",
+      "island":"Gran Canaria"
+   },
+   "38037":{  
+      "code":"38037",
+      "title":"Santa Cruz de La Palma",
+      "island":"La Palma"
+   },
+   "38038":{  
+      "code":"38038",
+      "title":"Santa Cruz de Tenerife",
+      "island":"Tenerife"
+   },
+   "35022":{  
+      "code":"35022",
+      "title":"Santa Lucía de Tirajana",
+      "island":"Gran Canaria"
+   },
+   "35023":{  
+      "code":"35023",
+      "title":"Santa María de Guía de Gran Canaria",
+      "island":"Gran Canaria"
+   },
+   "38039":{  
+      "code":"38039",
+      "title":"Santa Úrsula",
+      "island":"Tenerife"
+   },
+   "38040":{  
+      "code":"38040",
+      "title":"Santiago del Teide",
+      "island":"Tenerife"
+   },
+   "38041":{  
+      "code":"38041",
+      "title":"Sauzal (El)",
+      "island":"Tenerife"
+   },
+   "38042":{  
+      "code":"38042",
+      "title":"Silos (Los)",
+      "island":"Tenerife"
+   },
+   "38043":{  
+      "code":"38043",
+      "title":"Tacoronte",
+      "island":"Tenerife"
+   },
+   "38044":{  
+      "code":"38044",
+      "title":"Tanque (El)",
+      "island":"Tenerife"
+   },
+   "38045":{  
+      "code":"38045",
+      "title":"Tazacorte",
+      "island":"La Palma"
+   },
+   "38046":{  
+      "code":"38046",
+      "title":"Tegueste",
+      "island":"Tenerife"
+   },
+   "35024":{  
+      "code":"35024",
+      "title":"Teguise",
+      "island":"Lanzarote"
+   },
+   "35025":{  
+      "code":"35025",
+      "title":"Tejeda",
+      "island":"Gran Canaria"
+   },
+   "35026":{  
+      "code":"35026",
+      "title":"Telde",
+      "island":"Gran Canaria"
+   },
+   "35027":{  
+      "code":"35027",
+      "title":"Teror",
+      "island":"Gran Canaria"
+   },
+   "35028":{  
+      "code":"35028",
+      "title":"Tías",
+      "island":"Lanzarote"
+   },
+   "38047":{  
+      "code":"38047",
+      "title":"Tijarafe",
+      "island":"La Palma"
+   },
+   "35029":{  
+      "code":"35029",
+      "title":"Tinajo",
+      "island":"Lanzarote"
+   },
+   "35030":{  
+      "code":"35030",
+      "title":"Tuineje",
+      "island":"Fuerteventura"
+   },
+   "38049":{  
+      "code":"38049",
+      "title":"Valle Gran Rey",
+      "island":"La Gomera"
+   },
+   "38050":{  
+      "code":"38050",
+      "title":"Vallehermoso",
+      "island":"La Gomera"
+   },
+   "35032":{  
+      "code":"35032",
+      "title":"Valleseco",
+      "island":"Gran Canaria"
+   },
+   "35031":{  
+      "code":"35031",
+      "title":"Valsequillo de Gran Canaria",
+      "island":"Gran Canaria"
+   },
+   "38048":{  
+      "code":"38048",
+      "title":"Valverde",
+      "island":"El Hierro"
+   },
+   "35033":{  
+      "code":"35033",
+      "title":"Vega de San Mateo",
+      "island":"Gran Canaria"
+   },
+   "38051":{  
+      "code":"38051",
+      "title":"Victoria de Acentejo (La)",
+      "island":"Tenerife"
+   },
+   "38052":{  
+      "code":"38052",
+      "title":"Vilaflor",
+      "island":"Tenerife"
+   },
+   "38053":{  
+      "code":"38053",
+      "title":"Villa de Mazo",
+      "island":"La Palma"
+   },
+   "35034":{  
+      "code":"35034",
+      "title":"Yaiza",
+      "island":"Lanzarote"
+   }
+}

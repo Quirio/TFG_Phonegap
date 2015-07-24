@@ -32,7 +32,7 @@ function Peticion_Datos(objPeticion) {
             }
 
             Operadores = data[objPeticion.IndicadorNum].calculo.replace("(",'').replace(")",'').match(/\W/g);
-            console.log(Operadores);
+            //Console.log(Operadores);
             for(var i=0; i<Indicadores.length; i++)
                 IdicadoresURL.push(URL + Indicadores[i] + '/data?');
             RepURL = Indicadores.length
@@ -88,9 +88,11 @@ function Peticion_Datos(objPeticion) {
                         var TimeIndex = data.dimension.TIME.representation.size;
                         var GeoIndex = data.dimension.GEOGRAPHICAL.representation.size;
                         var MeasureIndex = data.dimension.MEASURE.representation.size;
-                        var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index);
-                        var ArrayResultados = data.observation;
+                        var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index).reverse();
+                        var ArrayResultados = data.observation.reverse();
                         var n = ArrayResultados.length;
+
+                        console.log(ArrayResultados);
 
                         $("#TituloDatos").append($("#SelectorDatos-button span").text());
                         $("#titulograficas").append($("#SelectorDatos-button span").text());
@@ -113,7 +115,7 @@ function Peticion_Datos(objPeticion) {
                         if(JSONindi[objPeticion.IndicadorNum].acumular == "SI")
                             acumularflag = true;
 
-                        var z = 0;
+                        var z = MeasureIndex-1;
                         for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
                             var acumulado =0;
                             var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
@@ -141,7 +143,7 @@ function Peticion_Datos(objPeticion) {
 
         //peticiones en el caso de sí derivado.
         else {
-            console.log(IdicadoresURL);
+           // console.log(IdicadoresURL);
                 superficieflag = false;
                URL=IdicadoresURL[0];
                PericionAJAXData(URL,0);
@@ -163,7 +165,7 @@ function Peticion_Datos(objPeticion) {
 
                            if(Indicadores[p]== "SUPERFICIE")
                                superficieflag = true;
-                           console.log(Indicadores[p],superficieflag);
+                           //console.log(Indicadores[p],superficieflag);
 
                            if (objPeticion.RepresentacionTime != null || objPeticion.RepresentacionGeo != null) {
                                var POS0 = 0;
@@ -174,12 +176,12 @@ function Peticion_Datos(objPeticion) {
                                var TimeIndex = data.dimension.TIME.representation.size;
                                var GeoIndex = data.dimension.GEOGRAPHICAL.representation.size;
                                var MeasureIndex = data.dimension.MEASURE.representation.size;
-                               var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index);
-                               var ArrayResultados = data.observation;
+                               var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index).reverse();;
+                               var ArrayResultados = data.observation.reverse();;
                                var n = ArrayResultados.length;
                                var ArrayDatosIndicador = [];
 
-                               var z = 0;
+                               var z = MeasureIndex-1;
                                for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
                                    if(superficieflag && i!=0) {
                                        z = z + MeasureIndex;
@@ -193,12 +195,12 @@ function Peticion_Datos(objPeticion) {
                                }
 
                                DatosPeticiones.push(ArrayDatosIndicador);
-                               console.log(DatosPeticiones);
+                              // console.log(DatosPeticiones);
                                $("#TablaDatos").table("refresh");
 
                            }
 
-                           console.log("Indicadorlenght: " + Indicadores.length, "DatosPeticionesleght: " +DatosPeticiones[0].length );
+                           //console.log("Indicadorlenght: " + Indicadores.length, "DatosPeticionesleght: " +DatosPeticiones[0].length );
                            if (DatosPeticiones.length == Indicadores.length) {
 
 
@@ -251,8 +253,8 @@ function Peticion_Datos(objPeticion) {
                                 }
 
                                 $(window).on("orientationchange", function (event) {
-                                $(".tabs").tabs("option", "active", 0);
-                                CrearBarChart(data, objPeticion, ArrayORdenGEO);
+                                    $(".tabs").tabs("option", "active", 0);
+                                        CrearBarChart(data, objPeticion, ArrayORdenGEO);
                                 })
 
                                var z = 0;
@@ -276,7 +278,7 @@ function Peticion_Datos(objPeticion) {
 
                            }
 
-                           console.log(DatosFinales);
+                           //console.log(DatosFinales);
 
 
                        }
@@ -290,7 +292,7 @@ function Peticion_Datos(objPeticion) {
 }
 
 function Operaciones (Dato1,Dato2,op){
-    console.log(Dato1,Dato2,op);
+    //console.log(Dato1,Dato2,op);
     switch (op){
         case "+":
             return Dato1+Dato2;

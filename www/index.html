@@ -45,7 +45,6 @@
 
 <script type="text/javascript">
     $( document ).ajaxStart(function () {
-        console.log("Cago ento");
         $('#popupLoader').popup( "open" );
     }).ajaxStop(function () {
         $('#popupLoader').popup( "close" );
