@@ -8,8 +8,9 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
 
 
     if(!derivado) {
+
         var obser = data.observation;
-        console.log(obser);
+        console.log("Entro en no derivados");
         var MeasureIndex = data.dimension.MEASURE.representation.size;
         var z = MeasureIndex-1;
         for (var i = 0; i < objPeticion.RepresentacionGeonom.length; i++) {

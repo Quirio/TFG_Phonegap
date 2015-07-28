@@ -40,14 +40,19 @@
 </div>
 
 <div data-role="popup" id="popupLoader" data-transition="pop" >
-        <img src="img/loader.gif" alt="Loading..."/>
+    <img id="loader" src="img/loader.gif" alt="Loading..."/>
 </div>
 
 <script type="text/javascript">
     $( document ).ajaxStart(function () {
-        $('#popupLoader').popup( "open" );
+        $.mobile.loading( 'show', {
+            text: 'Cargando',
+            textVisible: true,
+            theme: 'z',
+            html: ""
+        });
     }).ajaxStop(function () {
-        $('#popupLoader').popup( "close" );
+        $.mobile.loading( "hide" );
     });
 </script>
 
@@ -72,40 +77,64 @@
         <div id="Texto" class="hidden">
               <h1 id="TituloDatos"></h1>
             <center>
-            <table data-role="table" id="TablaDatos" class="ui-responsive" data-mode="reflow">
+                <table data-role="table" id="TablaDatos" class="ui-responsive" data-mode="reflow">
 
-            </table>
+                </table>
             </center>
-             
+              
         </div>
     </div>
 </div>
-</div>
 
 
-<div data-role="panel" id="Panel_Peticion" data-position="left" data-display="overlay">
-    <div>
-        <label class="select">Datos a Consultar</label>
-        <select id="SelectorDatos" onchange="OnchangeSelectorDatos()">
+<div id="IndicadoresDiv">
+    <div data-role="panel" data-native-menu="false" id="Panel_Peticion" data-position="left" data-display="overlay">
+        <label class="select">Categoría de Datos</label>
+        <select id ="Selectcategoria" data-native-menu="true" onchange="OnchangeSelectorcate()">
+            <option value="011">Territorio y usos del suelo</option>
+            <option value="021">Población</option>
+            <option value="061">Agricultura,ganadería,pesca y caza</option>
+            <option value="071">Industria,energía y agua</option>
+            <option value="082">Hostelería y turismo</option>
+            <option value="083">Transporte y Comunicaciones</option>
         </select>
+
+            <label class="select">Indicador a Consultar</label>
+            <select id="SelectorDatos" data-native-menu="true" onchange="OnchangeSelectorDatos()">
+            </select>
+
+            <label class="select">Islas</label>
+            <select id ="SelectIslas" multiple="multiple" data-native-menu="true" onchange="OnchangeSelectorDatos()">
+                <option value="0">Tenerife</option>
+                <option value="1">La Gomera</option>
+                <option value="2">La Palma</option>
+                <option value="3">El Hierro</option>
+                <option value="4">Gran Canaria</option>
+                <option value="5">Lanzarote</option>
+                <option value="6">Fuerteventura</option>
+            </select>
+
         <div id = "SelectorDiv">
 
-            <label class="SelectLabel">Representacion Geográfica</label>
-            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false" onchange="OnchangebotonesGranularidad()"></select>
 
-            <label class="SelectLabel">Representacion Temporal</label>
-            <select id ="SelectRepresentacionTime" class = "Select filterable-select" multiple="multiple" data-native-menu="false" onchange="OnchangebotonesGranularidad()"></select>
+            <label class="SelectLabel">Municipios</label>
+            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="true"  onchange="OnchangebotonesGranularidad()">
+            </select>
 
-            <input id="BotonLimpiar" type="button" value="Reiniciar" onclick="onclickBotonLimpiar()">
+            <input id="BotonRepresentacionGeoTodo" type="button" value="Seleccionar Todo" onclick="onclickBotonTodogeo()">
+
+            <label id="TemporalLabel" class="SelectLabel"></label>
+            <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="true" onchange="OnchangebotonesGranularidad()"></select>
+            <input id="BotonRepresentacionTimeTodo" type="button" value="Seleccionar Todo" onclick="onclickBotonTodotime()">
+
             <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">
         </div>
     </div>
-</div>
 
-<div id="deviceready" class="blink" hidden="true">
-    <p class="event listening">Connecting to Device</p>
-    <p class="event received">Device is Ready</p>
-</div>
+    <div id="deviceready" class="blink" hidden="true">
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Device is Ready</p>
+    </div>
 
 </body>
 </html>

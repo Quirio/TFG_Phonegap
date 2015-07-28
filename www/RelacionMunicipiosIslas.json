@@ -448,5 +448,15 @@
       "code":"35034",
       "title":"Yaiza",
       "island":"Lanzarote"
+   },
+   "35004":{  
+      "code":"35004",
+      "title":"Arrecife",
+      "island":"Lanzarote"
+   },
+   "35005":{  
+      "code":"35005",
+      "title":"Artenara",
+      "island":"Gran Canaria"
    }
 }

@@ -11,11 +11,20 @@ function Peticion_Datos(objPeticion) {
         var flagmulfin = false;
         var derivadoflag = false;
         var superficieflag = false;
+        var espacialflag = false;
+        var espacialcal = false;
         var mulfin = 1;
         var IdicadoresURL = [];
         var DatosPeticiones = [];
         var DatosFinales =[];
         var RepURL = 1;
+
+        if(data[objPeticion.IndicadorNum].espacial == "SI") {
+            espacialflag = true;
+            if (data[objPeticion.IndicadorNum].espacialcal == "SI") {
+                espacialcal = true;
+            }
+        }
 
         //miramos si el indicador es derivado.
         if( data[objPeticion.IndicadorNum].derivado == "NO") {
@@ -54,7 +63,7 @@ function Peticion_Datos(objPeticion) {
             }
             URL += '&';
             var Gtime;
-            if (data[objPeticion.IndicadorNum].time == "MENSUAL")
+            if (data[objPeticion.IndicadorNum].time == "MONTHLY")
                 Gtime = "MONTHLY";
             else
                 Gtime = "YEARLY";
@@ -65,6 +74,8 @@ function Peticion_Datos(objPeticion) {
             z++;
         }
 
+        console.log(data[objPeticion.IndicadorNum].time);
+        console.log(objPeticion);
         $("#TituloDatos").empty();
         $("#titulograficas").empty();
 
@@ -92,7 +103,11 @@ function Peticion_Datos(objPeticion) {
                         var ArrayResultados = data.observation.reverse();
                         var n = ArrayResultados.length;
 
-                        console.log(ArrayResultados);
+                        for(var i = 0; i<ArrayResultados.length; i++){
+                            if(ArrayResultados[i] == null)
+                                ArrayResultados[i] = 0;
+                        }
+
 
                         $("#TituloDatos").append($("#SelectorDatos-button span").text());
                         $("#titulograficas").append($("#SelectorDatos-button span").text());
@@ -107,7 +122,7 @@ function Peticion_Datos(objPeticion) {
 
                         $(window).on("orientationchange", function (event) {
                             $(".tabs").tabs("option", "active", 0);
-                            CrearBarChart(data, objPeticion, ArrayORdenGEO);
+                            CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag);
                         })
 
 
@@ -127,7 +142,7 @@ function Peticion_Datos(objPeticion) {
                                     $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + acumulado +  '</th>');
                                 }
                                 else
-                                $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + ArrayResultados[z] + '</th>');
+                                    $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + ArrayResultados[z] + '</th>');
                                 z = z + MeasureIndex ;
                             }
                         }
@@ -137,13 +152,16 @@ function Peticion_Datos(objPeticion) {
                     }
 
                     CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag);
+                  //  if(espacialflag)
+                     //   ComparacionEspacial(Datos,Operacion,);
+
                 }
             })
         }
 
         //peticiones en el caso de sí derivado.
         else {
-           // console.log(IdicadoresURL);
+            console.log("Derivado");
                 superficieflag = false;
                URL=IdicadoresURL[0];
                PericionAJAXData(URL,0);
@@ -180,6 +198,13 @@ function Peticion_Datos(objPeticion) {
                                var ArrayResultados = data.observation.reverse();;
                                var n = ArrayResultados.length;
                                var ArrayDatosIndicador = [];
+
+                               for(var i = 0; i<ArrayResultados.length; i++){
+                                   if(ArrayResultados[i] == null)
+                                       ArrayResultados[i] = 0;
+                               }
+
+                               console.log(ArrayResultados );
 
                                var z = MeasureIndex-1;
                                for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
@@ -252,11 +277,6 @@ function Peticion_Datos(objPeticion) {
                                     $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
                                 }
 
-                                $(window).on("orientationchange", function (event) {
-                                    $(".tabs").tabs("option", "active", 0);
-                                        CrearBarChart(data, objPeticion, ArrayORdenGEO);
-                                })
-
                                var z = 0;
                                for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
                                    var acumulado =0;
@@ -274,11 +294,15 @@ function Peticion_Datos(objPeticion) {
                                    }
                                }
 
-                            CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,derivadoflag);
+                            CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true);
+                               $(window).on("orientationchange", function (event) {
+                                   $(".tabs").tabs("option", "active", 0);
+                                   CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true);
+                               })
 
                            }
 
-                           //console.log(DatosFinales);
+                           console.log(DatosFinales);
 
 
                        }
@@ -289,6 +313,10 @@ function Peticion_Datos(objPeticion) {
 
         }
     })
+}
+
+function ComparacionEspacial(Datos,Operacion){
+
 }
 
 function Operaciones (Dato1,Dato2,op){

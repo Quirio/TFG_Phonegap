@@ -5,7 +5,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "011"
   },
   {
     "titulo": "Población",
@@ -13,7 +16,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Hombres",
@@ -21,7 +27,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Mujeres",
@@ -29,7 +38,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. De 0 a 14 años",
@@ -37,7 +49,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. De 15 a 64 años",
@@ -45,14 +60,20 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. De 65 o más años",
     "Indicador": "POBLACION_65MAS",
     "time": "YEARLY",
     "geo": "MUNICIPAL",
-    "acumular": ".."
+    "acumular": "..",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Hombres de 0 a 14 años",
@@ -60,7 +81,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Hombres de 15 a 64 años",
@@ -68,7 +92,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Hombres de 65 o más años",
@@ -76,7 +103,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Mujeres de 0 a 14 años",
@@ -84,7 +114,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Mujeres de 15 a 64 años",
@@ -92,7 +125,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Población. Mujeres de 65 o más años",
@@ -100,7 +136,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "021"
   },
   {
     "titulo": "Cabezas de ganado. Bovino",
@@ -108,7 +147,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "061"
   },
   {
     "titulo": "Cabezas de ganado. Ovino",
@@ -116,7 +158,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "061"
   },
   {
     "titulo": "Cabezas de ganado. Caprino",
@@ -124,7 +169,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "061"
   },
   {
     "titulo": "Cabezas de ganado. Porcino",
@@ -132,7 +180,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "061"
   },
   {
     "titulo": "Energía eléctrica disponible",
@@ -140,7 +191,9 @@
     "time": "..",
     "geo": "..",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "NO",
+    "categoria": "071"
   },
   {
     "titulo": "Alojamientos turísticos abiertos",
@@ -148,7 +201,10 @@
     "time": "MONTHLY",
     "geo": "MUNICIPAL",
     "acumular": "SI",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "082"
   },
   {
     "titulo": "Plazas ofertadas por alojamientos turísticos",
@@ -156,7 +212,10 @@
     "time": "MONTHLY",
     "geo": "MUNICIPAL",
     "acumular": "SI",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "082"
   },
   {
     "titulo": "Índice censal de ocupación por plazas",
@@ -164,7 +223,10 @@
     "time": "MONTHLY",
     "geo": "MUNICIPAL",
     "acumular": "SI",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "082"
   },
   {
     "titulo": "Viajeros entrados en alojamientos turísticos",
@@ -172,7 +234,10 @@
     "time": "MONTHLY",
     "geo": "MUNICIPAL",
     "acumular": "SI",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "082"
   },
   {
     "titulo": "Pernoctaciones en alojamientos turísticos",
@@ -180,7 +245,10 @@
     "time": "MONTHLY",
     "geo": "MUNICIPAL",
     "acumular": "SI",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "082"
   },
   {
     "titulo": "Población turística equivalente en alojamientos turísticos",
@@ -188,7 +256,10 @@
     "time": "YEARLY",
     "geo": "MUNICIPAL",
     "acumular": "..",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "082"
   },
   {
     "titulo": "Parque de vehículos",
@@ -196,7 +267,10 @@
     "time": "MONTHLY",
     "geo": "MUNICIPAL",
     "acumular": "SI",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "083"
   },
   {
     "titulo": "Parque de vehículos. Turismos",
@@ -204,7 +278,10 @@
     "time": "MONTHLY",
     "geo": "MUNICIPAL",
     "acumular": "SI",
-    "derivado": "NO"
+    "derivado": "NO",
+    "espacial": "SI",
+    "opespacial": "SI",
+    "categoria": "083"
   },
   {
     "titulo": "Densidad de población",
@@ -213,7 +290,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION/SUPERFICIE"
+    "calculo": "POBLACION/SUPERFICIE",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "021"
   },
   {
     "titulo": "Densidad de población más población turística",
@@ -222,7 +302,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "(POBLACION+ALOJATUR_PLAZAS_OCUPACION)/SUPERFICIE"
+    "calculo": "(POBLACION+ALOJATUR_PLAZAS_OCUPACION)/SUPERFICIE",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "021"
   },
   {
     "titulo": "Razón Masculinidad",
@@ -231,7 +314,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION_HOMBRES/POBLACION_MUJERES*100"
+    "calculo": "POBLACION_HOMBRES/POBLACION_MUJERES*100",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "021"
   },
   {
     "titulo": "Porcentaje de Jóvenes",
@@ -240,7 +326,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION_00A14/POBLACION*100"
+    "calculo": "POBLACION_00A14/POBLACION*100",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "021"
   },
   {
     "titulo": "Porcentaje de adultos",
@@ -249,7 +338,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION_15A64/POBLACION*100"
+    "calculo": "POBLACION_15A64/POBLACION*100",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "021"
   },
   {
     "titulo": "Indice de envejecimiento",
@@ -258,7 +350,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION_65MAS/POBLACION*100"
+    "calculo": "POBLACION_65MAS/POBLACION*100",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "021"
   },
   {
     "titulo": "Indice de juventud",
@@ -267,7 +362,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION_00A14/POBLACION_65MAS*100"
+    "calculo": "POBLACION_00A14/POBLACION_65MAS*100",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "021"
   },
   {
     "titulo": "Indice de vejez",
@@ -276,7 +374,8 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION_65MAS/POBLACION_00A14*100"
+    "calculo": "POBLACION_65MAS/POBLACION_00A14*100",
+    "categoria": "021"
   },
   {
     "titulo": "Indice de dependencia",
@@ -285,7 +384,8 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "(POBLACION_00A14+POBLACION_65MAS)/POBLACION_15A64*100"
+    "calculo": "(POBLACION_00A14+POBLACION_65MAS)/POBLACION_15A64*100",
+    "categoria": "021"
   },
   {
     "titulo": "Indice de dependencia de vejez",
@@ -294,7 +394,8 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "POBLACION_65MAS/POBLACION_15A64*100"
+    "calculo": "POBLACION_65MAS/POBLACION_15A64*100",
+    "categoria": "021"
   },
   {
     "titulo": "Concentración de ganado por superficie",
@@ -303,7 +404,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "(GANADO_OVINO+GANADO_BOVINO+GANADO_CAPRINO+GANADO_PORCINO)/SUPERFICIE"
+    "calculo": "(GANADO_OVINO+GANADO_BOVINO+GANADO_CAPRINO+GANADO_PORCINO)/SUPERFICIE",
+    "espacial": "NO",
+    "categoria": "061"
   },
   {
     "titulo": "Plazas ofertadas por alojamientos turisticos por superficie",
@@ -312,7 +415,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "ALOJATUR_PLAZAS_OFERTADAS/SUPERFICIE"
+    "calculo": "ALOJATUR_PLAZAS_OFERTADAS/SUPERFICIE",
+    "espacial": "NO",
+    "categoria": "082"
   },
   {
     "titulo": "Plazas ofertadas por alojamientos turisticos por cada 1000 habitantes",
@@ -321,7 +426,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "ALOJATUR_PLAZAS_OFERTADAS/POBLACION*1000"
+    "calculo": "ALOJATUR_PLAZAS_OFERTADAS/POBLACION*1000",
+    "espacial": "NO",
+    "categoria": "082"
   },
   {
     "titulo": "Población turística equivalente en alojamientos turísticos por cada 1000 habitantes",
@@ -330,7 +437,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "ALOJATUR_POBLACION_TUR_ETC/POBLACION*1000"
+    "calculo": "ALOJATUR_POBLACION_TUR_ETC/POBLACION*1000",
+    "espacial": "NO",
+    "categoria": "082"
   },
   {
     "titulo": "Población turística equivalente en alojamientos turísticos por superficie",
@@ -339,7 +448,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "ALOJATUR_POBLACION_TUR_ETC/SUPERFICIE"
+    "calculo": "ALOJATUR_POBLACION_TUR_ETC/SUPERFICIE",
+    "espacial": "NO",
+    "categoria": "082"
   },
   {
     "titulo": "Índice de motorización",
@@ -348,7 +459,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "PARQUE_VEHICULOS/POBLACION*1000"
+    "calculo": "PARQUE_VEHICULOS/POBLACION*1000",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "083"
   },
   {
     "titulo": "Índice de motorización más población turística",
@@ -357,7 +471,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "PARQUE_VEHICULOS/(POBLACION+ALOJATUR_POBLACION_TUR_ETC)*1000"
+    "calculo": "PARQUE_VEHICULOS/(POBLACION+ALOJATUR_POBLACION_TUR_ETC)*1000",
+    "espacial": "NO",
+    "categoria": "083"
   },
   {
     "titulo": "Índice de motorización (turismos)",
@@ -366,7 +482,10 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "PARQUE_VEHICULOS_TURISMOS/(POBLACION)*1000"
+    "calculo": "PARQUE_VEHICULOS_TURISMOS/(POBLACION)*1000",
+    "espacial": "SI",
+    "opespacial": "NO",
+    "categoria": "083"
   },
   {
     "titulo": "Índice de motorización (turismos) más población turística",
@@ -375,7 +494,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "PARQUE_VEHICULOS_TURISMOS/(POBLACION+ALOJATUR_POBLACION_TUR_ETC)*1000"
+    "calculo": "PARQUE_VEHICULOS_TURISMOS/(POBLACION+ALOJATUR_POBLACION_TUR_ETC)*1000",
+    "espacial": "NO",
+    "categoria": "083"
   },
   {
     "titulo": "Concentración de vehículos por superficie",
@@ -384,7 +505,9 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "PARQUE_VEHICULOS/SUPERFICIE"
+    "calculo": "PARQUE_VEHICULOS/SUPERFICIE",
+    "espacial": "NO",
+    "categoria": "083"
   },
   {
     "titulo": "Concentración de turismos por superficie",
@@ -393,6 +516,8 @@
     "geo": "MUNICIPAL",
     "acumular": "..",
     "derivado": "SI",
-    "calculo": "PARQUE_VEHICULOS_TURISMOS/SUPERFICIE"
+    "calculo": "PARQUE_VEHICULOS_TURISMOS/SUPERFICIE",
+    "espacial": "NO",
+    "categoria": "083"
   }
 ]

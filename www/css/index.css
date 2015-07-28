@@ -123,7 +123,11 @@ h1 {
 }
 */
 
-#SelectorDiv{
+#SelectorDiv {
+    display:none;
+}
+
+#SelectIndi{
     display:none;
 }
 
@@ -132,6 +136,7 @@ h1 {
     width: 100%;
 
 }
+
 
 #GraficaLineas{
     width: 100%;
