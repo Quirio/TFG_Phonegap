@@ -371,6 +371,7 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
         jsonp: "_callback",
         success: function (data) {
             $.getJSON('http://banot.etsii.ull.es/alu4403/Vistac/RelacionMunicipiosIslas.json', function( Relacion ) {
+                $("#SelectComp").empty();
                 console.log("DatosNum: " ,DatosMunicipios);
                 console.log("Datos Anteriores:", InfoPeticion);
                 console.log("Datos Ahora: ", data);
@@ -378,10 +379,11 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
 
                 //array con orden de municipios.
                 var ArrayordenMun = Object.keys(InfoPeticion.dimension.GEOGRAPHICAL.representation.index).reverse();
-                var NombreMun = []
-                for(var i=0; i<ArrayordenMun; i++){
+                var NombreMun = [];
+                for(var i=0; i<ArrayordenMun.length; i++){
                     NombreMun[i] = Relacion[ArrayordenMun[i]].title;
                 }
+                console.log("Nombremun: ",NombreMun);
                 //Array con orden de islas.
                 var ArrayordenIs = Object.keys(data.dimension.GEOGRAPHICAL.representation.index).reverse();
 
@@ -438,11 +440,15 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
                 for(var i = 0; i< IslasSelect.length; i++){
                     if(ContieneMunicipios[IslasSelect[i]]){
                         for(var j=0; j<RepresentacionTIME.length;j++){
-                            $("SelectComp").append()
+                            console.log("pollo");
+                            //<option value="011">Territorio y usos del suelo</option>
+                            $("#SelectComp").append('<option value="' + CodeIslas[IslasSelect[i]] +'%'+ RepresentacionTIME[j] +'"> Datos de la isla ' +  Islas[IslasSelect[i]] + ' en el año '+ RepresentacionTIME[j]+  '</option>');
                         }
                     }
 
                 }
+
+                $("#SelectComp").selectmenu("refresh");
 
                 //LLamamos a la funcion para crear la comparación
                 CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME);
