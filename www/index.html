@@ -71,6 +71,10 @@
 
             <div id="GraficaBarras"></div>
             <div id="GraficaLineas"></div>
+            <div id="GraficaCircular">
+                <select id ="SelectComp" data-native-menu="true" onchange="OnchangeSelectorComp()">
+                </select>
+            </div>
         </div>
     </div>
     <div id="Datos">  
@@ -100,11 +104,11 @@
         </select>
 
             <label class="select">Indicador a Consultar</label>
-            <select id="SelectorDatos" data-native-menu="true" onchange="OnchangeSelectorDatos()">
+            <select id="SelectorDatos" data-native-menu="false" onchange="OnchangeSelectorDatos()">
             </select>
 
             <label class="select">Islas</label>
-            <select id ="SelectIslas" multiple="multiple" data-native-menu="true" onchange="OnchangeSelectorDatos()">
+            <select id ="SelectIslas" multiple="multiple" data-native-menu="false" onchange="OnchangeSelectorDatos()">
                 <option value="0">Tenerife</option>
                 <option value="1">La Gomera</option>
                 <option value="2">La Palma</option>
@@ -118,13 +122,13 @@
 
 
             <label class="SelectLabel">Municipios</label>
-            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="true"  onchange="OnchangebotonesGranularidad()">
+            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false"  onchange="OnchangebotonesGranularidad()">
             </select>
 
             <input id="BotonRepresentacionGeoTodo" type="button" value="Seleccionar Todo" onclick="onclickBotonTodogeo()">
 
             <label id="TemporalLabel" class="SelectLabel"></label>
-            <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="true" onchange="OnchangebotonesGranularidad()"></select>
+            <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="false" onchange="OnchangebotonesGranularidad()"></select>
             <input id="BotonRepresentacionTimeTodo" type="button" value="Seleccionar Todo" onclick="onclickBotonTodotime()">
 
             <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">

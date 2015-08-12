@@ -110,6 +110,34 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
 
 }
 
-function CrearLineChart(/*data,objPeticion*/){
+function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME){
 
+        var data1 = []
+        for(var i= 0; i<ArrayordenMun; i++){
+            for(var j=0; j< RepresentacionTIME.length; j++){
+
+            }
+        }
+
+        var data = [
+            ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14],
+            ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
+        ];
+
+    console.log(data);
+
+        var plot1 = jQuery.jqplot ('GraficaBarras', [data],
+            {
+                seriesDefaults: {
+                    // Make this a pie chart.
+                    renderer: jQuery.jqplot.PieRenderer,
+                    rendererOptions: {
+                        // Put data labels on the pie slices.
+                        // By default, labels show the percentage of the slice.
+                        showDataLabels: true
+                    }
+                },
+                legend: { show:true, location: 'e' }
+            }
+        );
 }

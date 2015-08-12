@@ -375,6 +375,8 @@
     "acumular": "..",
     "derivado": "SI",
     "calculo": "POBLACION_65MAS/POBLACION_00A14*100",
+    "espacial": "SI",
+    "opespacial": "NO",
     "categoria": "021"
   },
   {
@@ -385,6 +387,8 @@
     "acumular": "..",
     "derivado": "SI",
     "calculo": "(POBLACION_00A14+POBLACION_65MAS)/POBLACION_15A64*100",
+    "espacial": "SI",
+    "opespacial": "NO",
     "categoria": "021"
   },
   {
@@ -395,6 +399,8 @@
     "acumular": "..",
     "derivado": "SI",
     "calculo": "POBLACION_65MAS/POBLACION_15A64*100",
+    "espacial": "SI",
+    "opespacial": "NO",
     "categoria": "021"
   },
   {

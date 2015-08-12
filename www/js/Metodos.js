@@ -32,6 +32,7 @@ function CrearObjetoPeticion(){
         GranularidadGeo:$("#SelectorGranularidadGeo").val(),
         RepresentacionGeo: Geoval,
         RepresentacionGeonom: Geonom,
+        IslasSelect: $("#SelectIslas").val(),
         GranularidadTime:$("#SelectorGranularidadTime").val(),
         RepresentacionTime:$("#SelectRepresentacionTime").val().reverse()
     };
@@ -44,6 +45,7 @@ function CrearObjetoPeticion(){
 function URLRepresentacion(objPeticion,flagsuperficie){
         var RepresentacionGEO;
         var RepresentacionTIME;
+        var Islascodigo;
         var URLRep = '';
         if(objPeticion.RepresentacionTime == null) {
             RepresentacionGEO = objPeticion.RepresentacionGeo;
@@ -71,6 +73,7 @@ function URLRepresentacion(objPeticion,flagsuperficie){
         else {
             RepresentacionTIME = objPeticion.RepresentacionTime;
             RepresentacionGEO = objPeticion.RepresentacionGeo;
+
             URLRep += 'representation=GEOGRAPHICAL%5B';
 
             for(var i = 0; i<RepresentacionGEO.length;i++){
