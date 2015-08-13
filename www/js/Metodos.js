@@ -34,7 +34,7 @@ function CrearObjetoPeticion(){
         RepresentacionGeonom: Geonom,
         IslasSelect: $("#SelectIslas").val(),
         GranularidadTime:$("#SelectorGranularidadTime").val(),
-        RepresentacionTime:$("#SelectRepresentacionTime").val().reverse()
+        RepresentacionTime:$("#SelectRepresentacionTime").val()
     };
 
     return ObjPeticion;

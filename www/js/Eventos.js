@@ -97,6 +97,8 @@ function onclickBotonTodotime(){
     $("#BotonRepresentacionTimeTodo").button( "refresh" );
 }
 
+
+
 // checkboxTime checkboxGEO
 /*
  <label class="select">Datos a Consultar</label>

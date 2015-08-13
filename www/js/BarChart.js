@@ -10,20 +10,36 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
     if(!derivado) {
 
         var obser = data.observation;
-        console.log("Entro en no derivados");
+        var ArrayGeoRepresentacion = data.dimension.GEOGRAPHICAL.representation.index;
+        //console.log("Entro en no derivados");
         var MeasureIndex = data.dimension.MEASURE.representation.size;
-        var z = MeasureIndex-1;
+
+
         for (var i = 0; i < objPeticion.RepresentacionGeonom.length; i++) {
             var datgeo = []
             var acumulado = 0;
+            var index = ArrayGeoRepresentacion[ArrayORdenGEO[i]];
+            var z = index*(objPeticion.RepresentacionTime.length*MeasureIndex);
+            var indexnom = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
             for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
+
                 if (Acumular) {
-                    acumulado += parseInt(obser[z]);
-                    datgeo.push(acumulado);
-                    //console.log(acumulado);
+                    if(obser[z] != "." && obser[z] != NaN) {
+                        acumulado += parseInt(obser[z]);
+                        datgeo.push(acumulado);
+                        //console.log(acumulado);
+                    }
+
+                    else{
+                        acumulado += 0;
+                        datgeo.push(acumulado);
+                    }
                 }
                 else {
-                    datgeo.push(parseInt(obser[z]));
+                    if(obser[z] != "." && obser[z] != NaN)
+                        datgeo.push(parseInt(obser[z]));
+                    else
+                        datgeo.push(0);
                    // console.log(parseInt(obser[z]));
                 }
 
@@ -32,8 +48,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
             }
             datos.push(datgeo);
 
-            var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
-            leyenda.push({label: objPeticion.RepresentacionGeonom[index]});
+            leyenda.push({label: objPeticion.RepresentacionGeonom[indexnom]});
         }
     }
 
@@ -45,11 +60,20 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
             var acumulado = 0;
             for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
                 if (Acumular) {
-                    acumulado += parseInt(data[z]);
-                    datgeo.push(acumulado);
+                    if(data[z] != "." && data[z] != NaN) {
+                        acumulado += parseInt(data[z]);
+                        datgeo.push(acumulado);
+                    }
+                    else{
+                        acumulado += parseInt(0);
+                        datgeo.push(acumulado);
+                    }
                 }
                 else {
-                    datgeo.push(parseInt(data[z]));
+                    if(data[z] != "." && data[z] != NaN)
+                        datgeo.push(parseInt(data[z]));
+                    else
+                        datgeo.push(0);
                 }
 
                 z++;
@@ -111,23 +135,33 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
 }
 
 function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME){
-
+/*
     var data1 = []
     var IslaSeleccionada = $("#SelectComp").val().split("%")[0];
     var AñoSeleccionado = $("#SelectComp").val().split("%")[1];
 
 
     //Rellenamos el array de datos.
+    var l = 0;
     for(var i= 0; i<ArrayordenMun.length; i++){
-        console.log(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].CodigoIsla);
+        ///Error aquí cuando coges varias islas y años a la vez solucionalo gandul.
+
+
         if(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].CodigoIsla == IslaSeleccionada ) {
-            data1[i] = [NombreMun[i] ,parseFloat(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato)];
+
+            console.log("Codigo Municipio: ",ArrayordenMun[i]);
+            console.log("Isla Seleccionada: ",IslaSeleccionada);
+            console.log("Nombre Municipio: ",NombreMun[i]);
+            console.log("Dato: ",ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato);
+            data1[l] = [NombreMun[i] ,parseFloat(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato)];
+            l++;
         }
     }
 
     //Añadimos el grupo extra de otros.
     var sum = 0;
-    for(var i= 0; i<data1.length; i++){
+        for(var i= 0; i<data1.length; i++){
+        console.log(i);
         sum += data1[i][1];
     }
     var datoextra = 100 - sum;
@@ -143,7 +177,7 @@ function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayord
 
     console.log(data1);
 
-    var plot1 = jQuery.jqplot ('GraficaBarras', [data1],
+    var plot1 = jQuery.jqplot ('GraficaC', [data1],
         {
             seriesDefaults: {
                 // Make this a pie chart.
@@ -156,5 +190,5 @@ function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayord
             },
             legend: { show:true, location: 'e' }
         }
-    );
+    );*/
 }

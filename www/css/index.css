@@ -143,13 +143,13 @@ h1 {
 }
 
 #GraficaCircular{
-    position: absolute;
-    top: 60%;
     width: 100%;
+    min-height: 80%;
 }
 
 #Texto{
     width: 100%;
+    height: 20%;
 }
 
 
