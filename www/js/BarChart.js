@@ -46,6 +46,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
                 z = z + MeasureIndex;
 
             }
+            datgeo.reverse();
             datos.push(datgeo);
 
             leyenda.push({label: objPeticion.RepresentacionGeonom[indexnom]});
@@ -85,8 +86,8 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
         }
     }
 
-    console.log(datos);
     var ticks = objPeticion.RepresentacionTime;
+    ticks.reverse();
 
     var plot1 = $.jqplot('GraficaBarras', datos , {
 
@@ -135,24 +136,23 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
 }
 
 function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME){
-/*
+    $("#GraficaC").empty();
     var data1 = []
     var IslaSeleccionada = $("#SelectComp").val().split("%")[0];
     var AñoSeleccionado = $("#SelectComp").val().split("%")[1];
+    var leyenda = NombreMun;
 
 
     //Rellenamos el array de datos.
     var l = 0;
     for(var i= 0; i<ArrayordenMun.length; i++){
-        ///Error aquí cuando coges varias islas y años a la vez solucionalo gandul.
-
 
         if(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].CodigoIsla == IslaSeleccionada ) {
 
-            console.log("Codigo Municipio: ",ArrayordenMun[i]);
-            console.log("Isla Seleccionada: ",IslaSeleccionada);
-            console.log("Nombre Municipio: ",NombreMun[i]);
-            console.log("Dato: ",ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato);
+            //console.log("Codigo Municipio: ",ArrayordenMun[i]);
+            //console.log("Isla Seleccionada: ",IslaSeleccionada);
+            //console.log("Nombre Municipio: ",NombreMun[i]);
+            //console.log("Dato: ",ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato);
             data1[l] = [NombreMun[i] ,parseFloat(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato)];
             l++;
         }
@@ -165,20 +165,18 @@ function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayord
         sum += data1[i][1];
     }
     var datoextra = 100 - sum;
-    console.log("Porcentaje de otros: " , datoextra);
 
     if(parseInt(datoextra) != 0 && parseInt(datoextra) != 1)
         data1[data1.length] = ["Otros", datoextra];
 
-    var data = [
-        ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14],
-        ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
-    ];
-
-    console.log(data1);
 
     var plot1 = jQuery.jqplot ('GraficaC', [data1],
         {
+            series:leyenda,
+            legend: {
+                show: true,
+                placement: 'outsideGrid'
+            },
             seriesDefaults: {
                 // Make this a pie chart.
                 renderer: jQuery.jqplot.PieRenderer,
@@ -190,5 +188,61 @@ function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayord
             },
             legend: { show:true, location: 'e' }
         }
-    );*/
+    );
+}
+
+function CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios){
+    $("#GraficaC").empty();
+    var IslaSeleccionada = $("#SelectComp").val().split("%")[0];
+    var AñoSeleccionado = $("#SelectComp").val().split("%")[1];
+    var IndiceTiempo = RepresentacionTIME.indexOf(AñoSeleccionado);
+    var DatoIsla;
+    var NombreIsla;
+    var leyenda = [];
+
+
+    var l = 0;
+    var j=0;
+    var data = [];
+    for(var i= 0; i<ArrayordenMun.length; i++){
+
+        if(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].CodigoIsla == IslaSeleccionada ) {
+            //console.log("Codigo Municipio: ",ArrayordenMun[i]);
+            //console.log("Isla Seleccionada: ",IslaSeleccionada);
+            //console.log("Nombre Municipio: ",NombreMun[i]);
+            //console.log("Dato: ",ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato);
+            NombreIsla = ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].NombreIsla;
+            leyenda.push({label: NombreMun[i]})
+            DatoIsla = parseFloat(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato);
+            data[l] = [parseFloat(DatosMunicipios[j+IndiceTiempo])];
+            j+=RepresentacionTIME.length;
+            l++;
+        }
+    }
+
+    data.push([DatoIsla]);
+    leyenda.push({label: NombreIsla});
+    console.log("Data: ",data);
+    console.log("leyenda",leyenda);
+
+    var plot2 = $.jqplot('GraficaC', data, {
+        series:leyenda,
+        legend: {
+            show: true,
+            location: 'e',
+            placement: 'outsideGrid'
+        },
+        seriesDefaults:{
+            renderer:$.jqplot.BarRenderer,
+            pointLabels: { show: true }
+        },
+        axes: {
+            xaxis: {
+                renderer: $.jqplot.CategoryAxisRenderer
+                //ticks: ticks
+            }
+        },
+        highlighter: { show: false }
+    });
+
 }

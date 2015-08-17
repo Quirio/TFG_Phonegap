@@ -147,6 +147,10 @@ h1 {
     min-height: 80%;
 }
 
+#GraficaC{
+    width: 100%;
+}
+
 #Texto{
     width: 100%;
     height: 20%;
