@@ -80,6 +80,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado)
                 z++;
 
             }
+            datgeo.reverse();
             datos.push(datgeo);
             var index = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
             leyenda.push({label: objPeticion.RepresentacionGeonom[index]});
@@ -154,6 +155,7 @@ function CrearCircularChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayord
             //console.log("Nombre Municipio: ",NombreMun[i]);
             //console.log("Dato: ",ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato);
             data1[l] = [NombreMun[i] ,parseFloat(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].Dato)];
+            console.log("Datos de piechart: ", data1);
             l++;
         }
     }

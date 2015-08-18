@@ -200,7 +200,7 @@ function Peticion_Datos(objPeticion) {
 
                            if(Indicadores[p]== "SUPERFICIE")
                                superficieflag = true;
-                           //console.log(Indicadores[p],superficieflag);
+                           console.log(Indicadores[p],superficieflag);
 
                            if (objPeticion.RepresentacionTime != null || objPeticion.RepresentacionGeo != null) {
                                var POS0 = 0;
@@ -214,6 +214,9 @@ function Peticion_Datos(objPeticion) {
                                var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index);
                                var ArrayGeoRepresentacion = data.dimension.GEOGRAPHICAL.representation.index;
                                var ArrayResultados = data.observation;
+
+
+
                                var n = ArrayResultados.length;
                                var ArrayDatosIndicador = [];
 
@@ -222,13 +225,18 @@ function Peticion_Datos(objPeticion) {
                                        ArrayResultados[i] = 0;
                                }
 
-                               console.log(ArrayResultados );
+                               console.log("ArrayResultadoDerivado:" ,ArrayResultados);
+                               var z=0;
 
                                for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
                                    var index = ArrayGeoRepresentacion[ArrayORdenGEO[i]];
-                                   var z = index*(objPeticion.RepresentacionTime.length*MeasureIndex);
+
                                    if(superficieflag && i!=0) {
-                                       z = z + MeasureIndex;
+                                       z++;
+                                   }
+
+                                   else{
+                                       z = index*(objPeticion.RepresentacionTime.length*MeasureIndex);
                                    }
                                    for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
                                        ArrayDatosIndicador.push(ArrayResultados[z]);
@@ -239,12 +247,13 @@ function Peticion_Datos(objPeticion) {
                                }
 
                                DatosPeticiones.push(ArrayDatosIndicador);
-                              // console.log(DatosPeticiones);
+                               console.log("Datos Peticiones",DatosPeticiones);
                                $("#TablaDatos").table("refresh");
 
                            }
 
-                           console.log("Indicadores: " + Indicadores, "DatosPeticionesleght: " +DatosPeticiones[0].length );
+
+
                            if (DatosPeticiones.length == Indicadores.length) {
 
 
@@ -282,6 +291,7 @@ function Peticion_Datos(objPeticion) {
 
 
                                    DatosFinales.push((DatoOPiqz / DatoOPderch)*mulfin);
+
                                }
 
 
@@ -344,8 +354,14 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
     var IslasSelect = $("#SelectIslas").val();
     var CodeIslas = ["ES709", "ES706", "ES707", "ES703", "ES705", "ES708", "ES704"];
     var Islas = ["Tenerife","La Gomera","La Palma","El Hierro","Gran Canaria","Lanzarote","Fuerteventura"];
-    var RepresentacionTIME = objPeticion.RepresentacionTime;
+    var RepresentacionTIME = objPeticion.RepresentacionTime.reverse();
     var RepresentacionGEO = [];
+
+    for(var i=0; i<DatosMunicipios.length;i++){
+        if(DatosMunicipios[i] == "."){
+            DatosMunicipios[i] =0;
+        }
+    }
 
     var ContieneMunicipios = [false,false,false,false,false,false,false];
 
@@ -492,8 +508,12 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
 
 }
 
+function ComparacionEspacialD(Indicadores,Operadores,SuperficieFlag,DatosMunicipios){
+
+}
+
 function Operaciones (Dato1,Dato2,op){
-    //console.log(Dato1,Dato2,op);
+    console.log("Operacion: ",Dato1,Dato2,op);
     switch (op){
         case "+":
             return Dato1+Dato2;
