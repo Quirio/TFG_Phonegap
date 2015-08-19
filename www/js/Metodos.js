@@ -42,10 +42,11 @@ function CrearObjetoPeticion(){
 //http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/POBLACION_HOMBRES/data?representation=GEOGRAPHICAL%5BES704%7CES705%5D%3ATIME%5B2011%5D&api_key=special-key
 
 ////añadimos Representacion a URL de consulta de datos.
-function URLRepresentacion(objPeticion,flagsuperficie){
+function URLRepresentacion(objPeticion,flagsuperficie,derivadoflag,espacialflag,IslasCode){
         var RepresentacionGEO;
         var RepresentacionTIME;
-        var Islascodigo;
+        var IslasCodigos = $("#SelectIslas").val();
+        console.log("IslasCodigos: ", IslasCodigos.length);
         var URLRep = '';
         if(objPeticion.RepresentacionTime == null) {
             RepresentacionGEO = objPeticion.RepresentacionGeo;
@@ -76,11 +77,21 @@ function URLRepresentacion(objPeticion,flagsuperficie){
 
             URLRep += 'representation=GEOGRAPHICAL%5B';
 
+
+            //En caso de que sea derivado y tenga espacial, metemos lo codigos de islas.
+            if(derivadoflag && espacialflag){
+
+                for(var lz = 0 ; lz < IslasCodigos.length; lz++){
+                    URLRep += IslasCode[IslasCodigos[lz]] + '%7C';
+                }
+            }
+
             for(var i = 0; i<RepresentacionGEO.length;i++){
                 if(i+1 != RepresentacionGEO.length)
                     URLRep += RepresentacionGEO[i] + '%7C';
-                else
+                else {
                     URLRep += RepresentacionGEO[i];
+                }
             }
             URLRep += '%5D%3ATIME%5B';
 

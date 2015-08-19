@@ -208,6 +208,7 @@ function CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayor
     var data = [];
     for(var i= 0; i<ArrayordenMun.length; i++){
 
+        console.log(ArrayordenMun[i]);
         if(ArrayDatosFinal[ArrayordenMun[i]][AñoSeleccionado].CodigoIsla == IslaSeleccionada ) {
             //console.log("Codigo Municipio: ",ArrayordenMun[i]);
             //console.log("Isla Seleccionada: ",IslaSeleccionada);
@@ -248,3 +249,4 @@ function CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayor
     });
 
 }
+
