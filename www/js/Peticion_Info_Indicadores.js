@@ -27,9 +27,15 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
                         IslasSeleccionadas[i] = Islas[IslasSeleccionadas[i]];
                     }
 
+
+
                     //Rellenamos Selector de representacion geográfica
                     for (var i = 0; i < data.dimension.GEOGRAPHICAL.representation.length; i++) {
+
                         if(data.dimension.GEOGRAPHICAL.representation[i].granularityCode == "MUNICIPALITIES" && IslasSeleccionadas.indexOf(Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].island ) != -1) {
+                            console.log("ISLAS SELECCIONADAS: ",IslasSeleccionadas);
+                            console.log("Codigo: ", data.dimension.GEOGRAPHICAL.representation[i])
+                            console.log("Comparacion: ", Relacion[data.dimension.GEOGRAPHICAL.representation[i].code]);
                              $("#" + Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].island.replace(" ","")).append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code + '%' + data.dimension.GEOGRAPHICAL.representation[i].title.es + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
                         }
                     }

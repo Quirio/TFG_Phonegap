@@ -143,8 +143,11 @@ h1 {
 }
 
 #GraficaCircular{
-    width: 100%;
-    min-height: 80%;
+display: none;
+}
+
+#GraficaCircular{
+  margin-top:5%;
 }
 
 #GraficaC{

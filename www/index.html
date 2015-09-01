@@ -29,14 +29,15 @@
 <script type="text/javascript" src="js/jqplot.pointLabels.min.js"></script>
 <script type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
 <script type="text/javascript" src="js/jqplot.donutRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot.enhancedLegendRenderer.min.js"></script>
 <script type="text/javascript">
     app.initialize();
-    Peticion_Indicadores();
-</script>
+    Peticion_Indicadores();</script>
 
 <div data-role="footer" class="ui-bar">
-    <a href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Consulta</a>
+    <a id="Botonpanel" href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Consulta</a>
     <center><h1>Vistac: Coyuntura</h1></center>
+  <!--  <a id="BotonLeyendas" data-role="button" data-inline="true" data-icon="info" class="ui-link ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all ui-btn-right "    role="button">Leyendas</a> -->
 </div>
 
 <div data-role="popup" id="popupLoader" data-transition="pop" >
@@ -65,12 +66,31 @@
         </ul>
     </div>
     <div id="Graficas">
+        <div id="FooterDentro" data-role="footer" class="ui-bar controlgroup">
+            <div data-role="controlgroup">
+                <a id="BotonLeyendas" data-role="button" data-inline="true" data-icon="info" class="ui-link ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all ui-btn-right "    role="button">Leyenda</a>
+            </div>
+             <center><h1 id="titulograficas"></h1></center>
+        </div>
 
-          <center><h1 id="titulograficas"></h1></center>
+
         <div id="Barras" class="hidden">
+
+           <!-- <div data-role="collapsible" data-iconpos="right" data-mini="true">
+                <h3>Gráfica de Barras</h3>
+                <div id="GraficaBarras"></div>
+            </div> -->
             <div id="GraficaBarras"></div>
             <div id="GraficaLineas"></div>
             <div id="GraficaCircular">
+
+                <div id="FooterDentroCOM" data-role="footer" class="ui-bar">
+                    <div class="controlgroup" data-role="controlgroup">
+                        <a id="BotonLeyendas1" data-role="button" data-inline="true" data-icon="info" class="ui-link ui-btn ui-icon-info ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all ui-btn-right "    role="button">Leyenda</a>
+                    </div>
+                    <h1>Comparación con Isla</h1>
+                </div>
+
                 <select id ="SelectComp" data-native-menu="true">
                 </select>
                 <div id="GraficaC"></div>
@@ -92,9 +112,9 @@
 
 
 <div id="IndicadoresDiv">
-    <div data-role="panel" data-native-menu="false" id="Panel_Peticion" data-position="left" data-display="overlay">
+    <div data-role="panel" data-native-menu="true" id="Panel_Peticion" data-position="left" data-display="overlay">
         <label class="select">Categoría de Datos</label>
-        <select id ="Selectcategoria" data-native-menu="true" onchange="OnchangeSelectorcate()">
+        <select id ="Selectcategoria" data-native-menu="false" onchange="OnchangeSelectorcate()">
             <option value="011">Territorio y usos del suelo</option>
             <option value="021">Población</option>
             <option value="061">Agricultura,ganadería,pesca y caza</option>
@@ -122,7 +142,7 @@
 
 
             <label class="SelectLabel">Municipios</label>
-            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false"  onchange="OnchangebotonesGranularidad()">
+            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false" onchange="OnchangebotonesGranularidad()">
             </select>
 
             <input id="BotonRepresentacionGeoTodo" type="button" value="Seleccionar Todo" onclick="onclickBotonTodogeo()">

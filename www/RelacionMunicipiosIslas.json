@@ -49,13 +49,13 @@
       "title":"Arona",
       "island":"Tenerife"
    },
-   "38004":{  
-      "code":"38004",
+   "35004":{  
+      "code":"35004",
       "title":"Arrecife",
       "island":"Lanzarote"
    },
-   "38005":{  
-      "code":"38005",
+   "35005":{  
+      "code":"35005",
       "title":"Artenara",
       "island":"Gran Canaria"
    },
@@ -449,14 +449,10 @@
       "title":"Yaiza",
       "island":"Lanzarote"
    },
-   "35004":{  
-      "code":"35004",
-      "title":"Arrecife",
-      "island":"Lanzarote"
-   },
-   "35005":{  
-      "code":"35005",
-      "title":"Artenara",
+   "35006":{
+      "code":"35006",
+      "title":"Arucas",
       "island":"Gran Canaria"
    }
+
 }

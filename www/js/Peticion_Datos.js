@@ -1,8 +1,13 @@
 /**
  * Created by Alejandro on 19/03/2015.
  */
+var leyendaflag = true;
+var leyendaflagCom = true;
 function Peticion_Datos(objPeticion) {
-
+    leyendaflag = true;
+    leyendaflagCom = true;
+    $("#GraficaC").empty();
+    $("#GraficaCircular").hide();
     $.getJSON( 'http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
         var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/';
         var Indicadores;
@@ -13,6 +18,7 @@ function Peticion_Datos(objPeticion) {
         var superficieflag = false;
         var espacialflag = false;
         var espacialcal = false;
+
         var mulfin = 1;
         var IdicadoresURL = [];
         var DatosPeticiones = [];
@@ -117,14 +123,18 @@ function Peticion_Datos(objPeticion) {
                         $("#TablaDatos").append('<thead><tr id="Titulo"></tr></thead><tbody id="Cuerpo"></tbody>');
 
                         $("#Titulo").append('<th></th>');
-                        for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
-                            $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
+                        if (JSONindi[objPeticion.IndicadorNum].acumular != "SI") {
+                            for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
+                                $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
+                            }
                         }
 
-                        $(window).on("orientationchange", function (event) {
-                            $(".tabs").tabs("option", "active", 0);
-                            CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag);
-                        })
+                        else{
+                            var time = objPeticion.RepresentacionTime.reverse();
+                            for (var i = 0; i < time.length; i++) {
+                                $("#Titulo").append('<th>' + time[i] + '</th>');
+                            }
+                        }
 
 
                         var acumularflag = false;
@@ -134,39 +144,99 @@ function Peticion_Datos(objPeticion) {
 
                         var l = 0;
 
-                        for (var i = 0; i < objPeticion.RepresentacionGeo.length ; i++) {
-                            var acumulado =0;
+                        for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
+                            var acumulado = 0;
                             var index = ArrayGeoRepresentacion[ArrayORdenGEO[i]];
-                            var z = index*(objPeticion.RepresentacionTime.length*MeasureIndex);
+                            var z = index * (objPeticion.RepresentacionTime.length * MeasureIndex);
                             console.log("Indice: ", index, "ArrayResultados: ", ArrayResultados);
                             var indexnom = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
-                            $("#Cuerpo").append('<tr id="' + objPeticion.RepresentacionGeo[indexnom] + '"><th id="TituloVertical">' + objPeticion.RepresentacionGeonom[indexnom] + '</th></tr>');
+                            if (JSONindi[objPeticion.IndicadorNum].acumular != "SI")
+                              $("#Cuerpo").append('<tr id="' + objPeticion.RepresentacionGeo[indexnom] + '"><th id="TituloVertical">' + objPeticion.RepresentacionGeonom[indexnom] + '</th></tr>');
                             for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
-
-                                if(JSONindi[objPeticion.IndicadorNum].acumular == "SI") {
-                                    acumulado += parseFloat(ArrayResultados[z]);
-                                    $("#" + objPeticion.RepresentacionGeo[indexnom]).append('<th>' + acumulado +  '</th>');
-                                }
-                                else {
+                                if (JSONindi[objPeticion.IndicadorNum].acumular != "SI"){
                                     $("#" + objPeticion.RepresentacionGeo[indexnom]).append('<th>' + ArrayResultados[z] + '</th>');
                                 }
                                 ArrayDatosUtiles[l] = ArrayResultados[z];
-                                z += MeasureIndex ;
+                                z += MeasureIndex;
                                 l++;
                             }
                         }
 
+                        console.log("Arraydatosutiles",ArrayDatosUtiles);
+
+                        //En caso de que sea acaumulado.ç
+                        var ArrayDatosUtilesAcum = [];
+                        if(JSONindi[objPeticion.IndicadorNum].acumular == "SI") {
+
+                            var Geo = objPeticion.RepresentacionGeo;
+                            var Time = objPeticion.RepresentacionTime;
+                            var Geonom = objPeticion.RepresentacionGeonom;
+                            var Geoorden = ArrayORdenGEO;
+                            var l =0;
+                            ArrayDatosUtiles.reverse();
+
+                            for(var i=0; i<Geo.length;i++){
+                                var Acumulado = parseFloat(ArrayDatosUtiles[l]);
+                                ArrayDatosUtilesAcum[l] = Acumulado;
+                                for(var j=0; j<Time.length;j++) {
+                                    l++
+                                    Acumulado = parseFloat(ArrayDatosUtiles[l]) + Acumulado
+                                    ArrayDatosUtilesAcum[l] = Acumulado;
+                                }
+                            }
+
+                            ArrayDatosUtiles.reverse();
+                            Geoorden.reverse();
+
+                            var l = 0;
+                            for (var i = 0; i < Geo.length; i++) {
+                                var indexnom = Geo.indexOf(ArrayORdenGEO[i]);
+                                $("#Cuerpo").append('<tr id="' + Geo[indexnom] + '"><th id="TituloVertical">' + Geonom[indexnom] + '</th></tr>');
+                                for (var j = 0; j < Time.length; j++) {
+                                    $("#" + Geo[indexnom]).append('<th>' + ArrayDatosUtilesAcum[l] + '</th>');
+                                    l++;
+                                }
+                            }
+                        }
+
                         $("#TablaDatos").table("refresh");
-
-
-
                     }
 
-                    CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag);
+                    if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
+                        CrearBarChart(data, objPeticion, ArrayORdenGEO, acumularflag, derivadoflag, true);
+                    else
+                        CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, true);
+
+
                      if(espacialflag)
                         ComparacionEspacialND(ArrayDatosUtiles,espacialcal,objPeticion,data);
                   //  if(espacialflag)
                      //   ComparacionEspacial(Datos,Operacion,);
+
+                    $(window).on("orientationchange", function (event) {
+                        $(".tabs").tabs("option", "active", 0);
+                        if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
+                            CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag,leyendaflag);
+                        else
+                            CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag);
+
+                        if(espacialflag)
+                            ComparacionEspacialND(ArrayDatosUtiles,espacialcal,objPeticion,data);
+                    })
+
+                    $("#BotonLeyendas").off( "mousedown" );
+                    $("#BotonLeyendas").mousedown(function() {
+                        $(".tabs").tabs("option", "active", 0);
+
+                        if( leyendaflag)
+                            leyendaflag = false;
+                        else
+                            leyendaflag = true;
+                        if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
+                             CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag, leyendaflag);
+                        else
+                            CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag);
+                    });
 
                 }
             })
@@ -384,15 +454,34 @@ function Peticion_Datos(objPeticion) {
                                    }
                                }
 
-                            CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true);
+                            CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true,true);
                                $(window).on("orientationchange", function (event) {
                                    $(".tabs").tabs("option", "active", 0);
-                                   CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true);
+                                   CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true,leyendaflag);
                                })
+
+                               $("#BotonLeyendas").off( "mousedown" );
+                               $("#BotonLeyendas").mousedown(function() {
+                                   $(".tabs").tabs("option", "active", 0);
+
+                                   if( leyendaflag)
+                                       leyendaflag = false;
+                                   else
+                                       leyendaflag = true;
+                                   CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true, leyendaflag);
+                               });
 
 
                                if(espacialflag)
                                    ComparacionEspacialD(DatosFinales,DatosFinalesIslas,objPeticion,data);
+
+                               $(window).on("orientationchange", function (event) {
+                                   $(".tabs").tabs("option", "active", 0);
+                                   CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true,leyendaflag);
+
+                                   if(espacialflag)
+                                       ComparacionEspacialD(DatosFinales,DatosFinalesIslas,objPeticion,data);
+                               })
 
                            }
 
@@ -403,13 +492,14 @@ function Peticion_Datos(objPeticion) {
                }
 
         }
+
     })
 }
 
 //http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/ALOJATUR_ABIERTOS/data?representation=GEOGRAPHICAL%5B38001%7C38006%5D%3ATIME%5B2015M04%7C2015M05%7C2015M06%5D&api_key=special-key
 //Comparación Espacial para no derivados
 function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticion){
-
+    $("#GraficaCircular").show();
     var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/'+objPeticion.Indicador;
 
     var IslasSelect = $("#SelectIslas").val();
@@ -425,8 +515,6 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
     }
 
     var ContieneMunicipios = [false,false,false,false,false,false,false];
-
-    console.log("Islas Seleccionadas: ",IslasSelect);
 
     for(var i = 0; i<IslasSelect.length; i++)
         RepresentacionGEO[i] = CodeIslas[IslasSelect[i]];
@@ -508,9 +596,7 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
                         var resultado;
                         if (Operacion) {
                             resultado = (parseFloat(DatosMunicipios[l])/parseFloat(DatosUtilesIsla[codeIsla][RepresentacionTIME[j]]))*100;
-                            console.log("Municipio: ", NombreMun[i]);
-                            console.log("l: ", l , "i: ", i, "j: ",j);
-                            console.log("Operación: ", DatosMunicipios[l], "/", DatosUtilesIsla[codeIsla][RepresentacionTIME[j]],"*100 = ",resultado);
+
                             ArrayDatosFinal[ArrayordenMun[i]][RepresentacionTIME[j]] ={
                                 "Dato":""+resultado,
                                 "CodigoIsla":codeIsla,
@@ -545,23 +631,44 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
 
                 //LLamamos a la funcion para crear la comparación
                 if (Operacion) {
-                    CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME);
+
+                    CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME,true);
+                    $("#SelectComp").off( "change" );
                     $("#SelectComp").change(function() {
-                        CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME);
+                        CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME,leyendaflagCom);
+                    });
+
+                    $("#BotonLeyendas1").off( "mouseup" );
+                    $("#BotonLeyendas1").mouseup(function() {
+                        $(".tabs").tabs("option", "active", 0);
+
+                        if(leyendaflagCom)
+                            leyendaflagCom = false;
+                        else
+                            leyendaflagCom = true;
+                        CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME,leyendaflagCom);
                     });
 
                 }
 
                 else{
-                    CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios);
+                    CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,true);
+                    $("#SelectComp").off( "change" );
                     $("#SelectComp").change(function() {
-                        CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios);
+                        CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
+                    });
+
+                    $("#BotonLeyendas1").off( "mouseup" );
+                    $("#BotonLeyendas1").mouseup(function() {
+                        $(".tabs").tabs("option", "active", 0);
+
+                        if(leyendaflagCom)
+                            leyendaflagCom = false;
+                        else
+                            leyendaflagCom = true;
+                        CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
                     });
                 }
-                console.log("DatosMunicipios: ",DatosMunicipios);
-                console.log("Array Orden: ",ArrayordenMun,"Array Nombre: ",NombreMun);
-                console.log("Dato Isla: ", DatosUtilesIsla ,"Array Orden Isla: ", ArrayordenIs);
-
             });
         }
     });
@@ -571,7 +678,7 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
 
 //Comparacion espacil de derivados.
 function ComparacionEspacialD(DatosMunicipios,DatosIslas,objPeticion,InfoPeticion){
-
+    $("#GraficaCircular").show();
     $.getJSON('http://banot.etsii.ull.es/alu4403/Vistac/RelacionMunicipiosIslas.json', function( Relacion ) {
 
         $("#SelectComp").empty();
@@ -590,17 +697,18 @@ function ComparacionEspacialD(DatosMunicipios,DatosIslas,objPeticion,InfoPeticio
             z++
         }
 
-        for(var i= ArrayordenMun.length-IslasSelect.length; i<ArrayordenMun.length; i++){
+        for(var i= 0; i<IslasSelect.length; i++){
             ArrayordenMun.pop();
         }
 
-        console.log(RepresentacionTIME);
+        console.log(ArrayordenMun);
 
         var NombreMun = [];
         var ArrayDatosFinal =[];
 
         //Creamos el array final para los datos de municipios
-        for(var i=0; i<ArrayordenMun.length-IslasSelect.length+1; i++){
+        for(var i=0; i<ArrayordenMun.length; i++){
+            console.log(ArrayordenMun[i]);
             var DatosRelacion = Relacion[ArrayordenMun[i]];
             ContieneMunicipios[Islas.indexOf(DatosRelacion.island)] = true;
             NombreMun[i] = Relacion[ArrayordenMun[i]].title;
@@ -634,9 +742,24 @@ function ComparacionEspacialD(DatosMunicipios,DatosIslas,objPeticion,InfoPeticio
         $("#SelectComp").selectmenu("refresh");
 
 
-        CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios);
+
+        CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,true);
+
+
+        $("#SelectComp").off( "change" );
         $("#SelectComp").change(function() {
-            CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios);
+            CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
+        });
+
+        $("#BotonLeyendas1").off( "mouseup" );
+        $("#BotonLeyendas1").mouseup(function() {
+            $(".tabs").tabs("option", "active", 0);
+
+            if(leyendaflagCom)
+                leyendaflagCom = false;
+            else
+                leyendaflagCom = true;
+            CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
         });
 
     });
