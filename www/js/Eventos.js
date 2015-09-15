@@ -104,6 +104,37 @@ function onclickBotonTodotime(){
     $("#BotonRepresentacionTimeTodo").button( "refresh" );
 }
 
+function onclickBotonTodoislas(){
+
+
+    if($("#BotonRepresentacionIslasTodo").val() == "Seleccionar Todo" ) {
+        $("#BotonRepresentacionIslasTodo").val("Deseleccionar Todo");
+        $("#SelectIslas option").prop("selected", true);
+        if($("#SelectIslas").val() != null && $("#SelectorDatos").val() != "") {
+            $(".tabs").tabs("option", "active", 0);
+            $("#BotonPeticion").button("disable");
+            Peticion_Info_Indicadores($("#SelectorDatos").val().split("%")[0], $("#SelectorDatos").val().split("%")[1]);
+            $("#BotonRepresentacionGeoTodo").val("Seleccionar Todo");
+            $("#BotonRepresentacionTimeTodo").val("Seleccionar Todo");
+            $("#BotonRepresentacionGeoTodo").button( "refresh" );
+            $("#BotonRepresentacionTimeTodo").button( "refresh" );
+        }
+    }
+    else {
+        $("#BotonRepresentacionIslasTodo").val("Seleccionar Todo");
+        $("#SelectIslas").prepend('<option id=opcionvacia></option>');
+        var myselect = $("#SelectIslas");
+        myselect[0].selectedIndex=0;
+        myselect.selectmenu("refresh");
+        $("#opcionvacia").remove();
+        $("#SelectorDiv").hide();
+
+    }
+    $("#SelectIslas").selectmenu("refresh");
+    $("#BotonRepresentacionIslasTodo").button( "refresh" );
+
+}
+
 
 
 // checkboxTime checkboxGEO

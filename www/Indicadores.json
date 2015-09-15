@@ -512,7 +512,8 @@
     "acumular": "..",
     "derivado": "SI",
     "calculo": "PARQUE_VEHICULOS/SUPERFICIE",
-    "espacial": "NO",
+    "espacial": "SI",
+    "opespacial": "NO",
     "categoria": "083"
   },
   {
@@ -523,7 +524,8 @@
     "acumular": "..",
     "derivado": "SI",
     "calculo": "PARQUE_VEHICULOS_TURISMOS/SUPERFICIE",
-    "espacial": "NO",
+    "espacial": "SI",
+    "opespacial": "NO",
     "categoria": "083"
   }
 ]

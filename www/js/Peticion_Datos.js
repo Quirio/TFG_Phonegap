@@ -158,7 +158,7 @@ function Peticion_Datos(objPeticion) {
 
                             for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
                                 if (JSONindi[objPeticion.IndicadorNum].acumular != "SI"){
-                                    $("#" + objPeticion.RepresentacionGeo[indexnom]).append('<th id="DatoTabla">' + ArrayResultados[z].toFixed(2) + '</th>');
+                                    $("#" + objPeticion.RepresentacionGeo[indexnom]).append('<th id="DatoTabla">' + parseFloat(ArrayResultados[z]).toFixed(2) + '</th>');
                                 }
                                 ArrayDatosUtiles[l] = ArrayResultados[z];
                                 z += MeasureIndex;
