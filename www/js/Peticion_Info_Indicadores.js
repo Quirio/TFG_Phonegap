@@ -10,6 +10,12 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
             $("#TemporalLabel").text("Años");
         else
             $("#TemporalLabel").text("Meses");
+
+        if(Indicadores[index_Indicador].geo == "MUNICIPAL")
+            $("#GeoLabel").text("Municipios");
+        else
+            $("#GeoLabel").text("Islas");
+
         $.ajax({
             type: "GET",
             url: URL,
@@ -21,22 +27,35 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
                     //Vaciamos Selectores.
                     $(".Select").empty();
 
+
                     //Rellenamos los selectores geográficos.
-                    for (var i = 0; i < IslasSeleccionadas.length; i++) {
-                        $("#SelectRepresentacionGeo").append('<optgroup id="' + Islas[IslasSeleccionadas[i]].replace(" ","") + '" label="' + Islas[IslasSeleccionadas[i]] + '"class="SelectOption" data-icon=" carat-r" ></optgroup>');
-                        IslasSeleccionadas[i] = Islas[IslasSeleccionadas[i]];
+                    if(Indicador != "ENERGIA_ELECTRICA_DISPONIBLE") {
+                        for (var i = 0; i < IslasSeleccionadas.length; i++) {
+                            $("#SelectRepresentacionGeo").append('<optgroup id="' + Islas[IslasSeleccionadas[i]].replace(" ", "") + '" label="' + Islas[IslasSeleccionadas[i]] + '"class="SelectOption" data-icon=" carat-r" ></optgroup>');
+                            IslasSeleccionadas[i] = Islas[IslasSeleccionadas[i]];
+                        }
                     }
 
 
-
                     //Rellenamos Selector de representacion geográfica
-                    for (var i = 0; i < data.dimension.GEOGRAPHICAL.representation.length; i++) {
 
-                        if(data.dimension.GEOGRAPHICAL.representation[i].granularityCode == "MUNICIPALITIES" && IslasSeleccionadas.indexOf(Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].island ) != -1) {
-                            console.log("ISLAS SELECCIONADAS: ",IslasSeleccionadas);
-                            console.log("Codigo: ", data.dimension.GEOGRAPHICAL.representation[i])
-                            console.log("Comparacion: ", Relacion[data.dimension.GEOGRAPHICAL.representation[i].code]);
-                             $("#" + Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].island.replace(" ","")).append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code + '%' + data.dimension.GEOGRAPHICAL.representation[i].title.es + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
+                    if(Indicador == "ENERGIA_ELECTRICA_DISPONIBLE") {
+                        for (var i = 0; i < data.dimension.GEOGRAPHICAL.representation.length; i++) {
+                            if (data.dimension.GEOGRAPHICAL.representation[i].granularityCode == "ISLANDS"){
+                                $("#SelectRepresentacionGeo").append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code + '%' + data.dimension.GEOGRAPHICAL.representation[i].title.es + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
+                            }
+
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < data.dimension.GEOGRAPHICAL.representation.length; i++) {
+
+                            if (data.dimension.GEOGRAPHICAL.representation[i].granularityCode == "MUNICIPALITIES" && IslasSeleccionadas.indexOf(Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].island) != -1) {
+                                console.log("ISLAS SELECCIONADAS: ", IslasSeleccionadas);
+                                console.log("Codigo: ", data.dimension.GEOGRAPHICAL.representation[i])
+                                console.log("Comparacion: ", Relacion[data.dimension.GEOGRAPHICAL.representation[i].code]);
+                                $("#" + Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].island.replace(" ", "")).append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code + '%' + data.dimension.GEOGRAPHICAL.representation[i].title.es + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
+                            }
                         }
                     }
 
@@ -44,12 +63,12 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
 
                     //Rellenamos selectores temporales.
                     for (var i = 0; i < data.dimension.TIME.granularity.length; i++) {
-                        $("#SelectRepresentacionTime").append('<optgroup id="' + data.dimension.TIME.granularity[i].code + '" label="' + data.dimension.TIME.granularity[i].title.es + '"class="SelectOption" ></optgroup>');
+                      $("#SelectRepresentacionTime").append('<optgroup id="' + data.dimension.TIME.granularity[i].code + '" label="' + data.dimension.TIME.granularity[i].title.es + '"class="SelectOption" ></optgroup>');
                     }
 
                     //Rellenamos Selector de representacion temporal
                     for (var i = 0; i < data.dimension.TIME.representation.length; i++) {
-                        console.log(data.dimension.TIME.representation[i].granularityCode);
+                        console.log(data.dimension.TIME.representation[i].granularityCode,Indicadores[index_Indicador].time);
                         if (data.dimension.TIME.representation[i].granularityCode == Indicadores[index_Indicador].time)
                             $("#YEARLY").append('<option value=' + data.dimension.TIME.representation[i].code + ' class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
                         else if (data.dimension.TIME.representation[i].granularityCode == Indicadores[index_Indicador].time)

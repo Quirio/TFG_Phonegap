@@ -1,14 +1,23 @@
 /**
  * Created by Alejandro on 19/03/2015.
  */
-var leyendaflag = true;
-var leyendaflagCom = true;
+
 function Peticion_Datos(objPeticion) {
-    leyendaflag = true;
-    leyendaflagCom = true;
+    console.log(objPeticion.RepresentacionGeo.length);
+     if(parseInt(objPeticion.RepresentacionGeo.length) > 10){
+        leyendaflag = false;
+        leyendaflagCom = false;
+    }
+    else{
+        leyendaflag = true;
+        leyendaflagCom = true;
+    }
+
+
     $("#GraficaC").empty();
     $("#GraficaCircular").hide();
-    $.getJSON( 'http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
+
+     $.getJSON( 'http://banot.etsii.ull.es/alu4403/Vistac/Indicadores.json', function( data ) {
         var URL = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/';
         var Indicadores;
         var JSONindi = data;
@@ -28,6 +37,7 @@ function Peticion_Datos(objPeticion) {
         var RepURL = 1;
         var Islas = ["Tenerife","La Gomera","La Palma","El Hierro","Gran Canaria","Lanzarote","Fuerteventura"];
         var IslasCode = ["ES709","ES706","ES707","ES703","ES705","ES708","ES704"];
+
 
 
         if(data[objPeticion.IndicadorNum].espacial == "SI") {
@@ -72,14 +82,6 @@ function Peticion_Datos(objPeticion) {
             if (objPeticion.RepresentacionTime != null || objPeticion.RepresentacionGeo != null) {
                 URL += URLRepresentacion(objPeticion,superficieflag,derivadoflag,espacialflag,IslasCode);
             }
-           /* URL += '&';
-            var Gtime;
-            if (data[objPeticion.IndicadorNum].time == "MONTHLY")
-                Gtime = "MONTHLY";
-            else
-                Gtime = "YEARLY";
-            URL += 'granularity==GEOGRAPHICAL%5BMUNICIPALITIES%5D%3ATIME%5B' + Gtime + '%5D';*/
-
             URL += '&api_key=special-key';
             IdicadoresURL[z]=URL;
             z++;
@@ -106,7 +108,8 @@ function Peticion_Datos(objPeticion) {
                         var MeasureIndex = data.dimension.MEASURE.representation.size;
                         var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index);
                         var ArrayGeoRepresentacion = data.dimension.GEOGRAPHICAL.representation.index;
-                        console.log("ArrayGeoRepresentacion: ",ArrayGeoRepresentacion);
+                        var PosAbsolute = data.dimension.MEASURE.representation.index.ABSOLUTE;
+                            console.log("Data: ",data,"PosAbsolute: ",PosAbsolute);
                         var ArrayResultados = data.observation;
                         var ArrayDatosUtiles = [];
 
@@ -145,16 +148,17 @@ function Peticion_Datos(objPeticion) {
                         var l = 0;
 
                         for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
-                            var acumulado = 0;
                             var index = ArrayGeoRepresentacion[ArrayORdenGEO[i]];
-                            var z = index * (objPeticion.RepresentacionTime.length * MeasureIndex);
+                            var z = PosAbsolute + (index * objPeticion.RepresentacionTime.length * MeasureIndex);
                             console.log("Indice: ", index, "ArrayResultados: ", ArrayResultados);
                             var indexnom = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
-                            if (JSONindi[objPeticion.IndicadorNum].acumular != "SI")
-                              $("#Cuerpo").append('<tr id="' + objPeticion.RepresentacionGeo[indexnom] + '"><th id="TituloVertical">' + objPeticion.RepresentacionGeonom[indexnom] + '</th></tr>');
+                            if (JSONindi[objPeticion.IndicadorNum].acumular != "SI") {
+                                $("#Cuerpo").append('<tr id="' + objPeticion.RepresentacionGeo[indexnom] + '"><th id="TituloVertical">' + objPeticion.RepresentacionGeonom[indexnom] + '</th></tr>');
+                            }
+
                             for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
                                 if (JSONindi[objPeticion.IndicadorNum].acumular != "SI"){
-                                    $("#" + objPeticion.RepresentacionGeo[indexnom]).append('<th>' + ArrayResultados[z] + '</th>');
+                                    $("#" + objPeticion.RepresentacionGeo[indexnom]).append('<th id="DatoTabla">' + ArrayResultados[z].toFixed(2) + '</th>');
                                 }
                                 ArrayDatosUtiles[l] = ArrayResultados[z];
                                 z += MeasureIndex;
@@ -162,9 +166,7 @@ function Peticion_Datos(objPeticion) {
                             }
                         }
 
-                        console.log("Arraydatosutiles",ArrayDatosUtiles);
-
-                        //En caso de que sea acaumulado.ç
+                         //En caso de que sea acaumulado.
                         var ArrayDatosUtilesAcum = [];
                         if(JSONindi[objPeticion.IndicadorNum].acumular == "SI") {
 
@@ -193,19 +195,19 @@ function Peticion_Datos(objPeticion) {
                                 var indexnom = Geo.indexOf(ArrayORdenGEO[i]);
                                 $("#Cuerpo").append('<tr id="' + Geo[indexnom] + '"><th id="TituloVertical">' + Geonom[indexnom] + '</th></tr>');
                                 for (var j = 0; j < Time.length; j++) {
-                                    $("#" + Geo[indexnom]).append('<th>' + ArrayDatosUtilesAcum[l] + '</th>');
+                                    $("#" + Geo[indexnom]).append('<th>' + ArrayDatosUtilesAcum[l].toFixed(2) + '</th>');
                                     l++;
                                 }
                             }
                         }
 
-                        $("#TablaDatos").table("refresh");
+                        //$("#TablaDatos").table("refresh");
                     }
 
                     if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
-                        CrearBarChart(data, objPeticion, ArrayORdenGEO, acumularflag, derivadoflag, true);
+                        CrearBarChart(data, objPeticion, ArrayORdenGEO, acumularflag, derivadoflag, leyendaflag);
                     else
-                        CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, true);
+                        CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag);
 
 
                      if(espacialflag)
@@ -214,6 +216,7 @@ function Peticion_Datos(objPeticion) {
                      //   ComparacionEspacial(Datos,Operacion,);
 
                     $(window).on("orientationchange", function (event) {
+                        console.log("Evento: ",event.orientation);
                         $(".tabs").tabs("option", "active", 0);
                         if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
                             CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag,leyendaflag);
@@ -244,8 +247,7 @@ function Peticion_Datos(objPeticion) {
 
         //peticiones en el caso de sí derivado.
         else {
-            console.log("Derivado");
-                superficieflag = false;
+               superficieflag = false;
                URL=IdicadoresURL[0];
                PericionAJAXData(URL,0);
 
@@ -273,6 +275,7 @@ function Peticion_Datos(objPeticion) {
                                var MeasureIndex = data.dimension.MEASURE.representation.size;
                                var ArrayORdenGEO = Object.keys(data.dimension.GEOGRAPHICAL.representation.index);
                                var ArrayGeoRepresentacion = data.dimension.GEOGRAPHICAL.representation.index;
+                               var PosAbsolute = data.dimension.MEASURE.representation.index.ABSOLUTE;
                                var ArrayResultados = data.observation;
                                var IslasSelect = $("#SelectIslas").val();
 
@@ -285,13 +288,13 @@ function Peticion_Datos(objPeticion) {
                                }
 
                                console.log("ArrayResultadoDerivado:" ,ArrayResultados[3]);
-                               var z=0;
+                               var z=MeasureIndex-1;
 
                                for (var i = 0; i < objPeticion.RepresentacionGeo.length; i++) {
                                    var index = ArrayGeoRepresentacion[ArrayORdenGEO[i]];
 
                                    if(!superficieflag) {
-                                       z = index*(objPeticion.RepresentacionTime.length*MeasureIndex);
+                                       z = PosAbsolute + (index*objPeticion.RepresentacionTime.length*MeasureIndex);
                                    }
                                    
                                    for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
@@ -332,7 +335,7 @@ function Peticion_Datos(objPeticion) {
                                DatosPeticiones.push(ArrayDatosIndicador);
                                DatosPeticionesIslas.push(ArrayDatosIslas);
                                console.log("DatosPeticiones ",DatosPeticiones);
-                               $("#TablaDatos").table("refresh");
+                              // $("#TablaDatos").table("refresh");
 
                            }
 
@@ -446,15 +449,15 @@ function Peticion_Datos(objPeticion) {
 
                                        if(JSONindi[objPeticion.IndicadorNum].acumular == "SI") {
                                            acumulado += parseFloat(DatosFinales[z]);
-                                           $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + acumulado +  '</th>');
+                                           $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + acumulado.toFixed(2) +  '</th>');
                                        }
                                        else
-                                           $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + DatosFinales[z] + '</th>');
+                                           $("#" + objPeticion.RepresentacionGeo[index]).append('<th>' + DatosFinales[z].toFixed(2) + '</th>');
                                        z++ ;
                                    }
                                }
 
-                            CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true,true);
+                            CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true,leyendaflag);
                                $(window).on("orientationchange", function (event) {
                                    $(".tabs").tabs("option", "active", 0);
                                    CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true,leyendaflag);
@@ -550,6 +553,7 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
         jsonp: "_callback",
         success: function (data) {
             var ArrayGeoRepresentacion = data.dimension.GEOGRAPHICAL.representation.index;
+
             $.getJSON('http://banot.etsii.ull.es/alu4403/Vistac/RelacionMunicipiosIslas.json', function( Relacion ) {
                 $("#SelectComp").empty();
                 //array con orden de municipios.
@@ -568,10 +572,11 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
                 //Obtener Array de datos utiles de la isla.
                 var ArrayResultados = data.observation;
                 var MeasureIndex = data.dimension.MEASURE.representation.size;
+                var PosAbsolute = data.dimension.MEASURE.representation.index.ABSOLUTE;
                 var DatosUtilesIsla = [];
                 for (var i = 0; i < ArrayordenIs.length; i++) {
                     var index = ArrayGeoRepresentacion[ArrayordenIs[i]];
-                    var z = index*(objPeticion.RepresentacionTime.length*MeasureIndex);
+                    var z = PosAbsolute+(index*objPeticion.RepresentacionTime.length*MeasureIndex);
                     DatosUtilesIsla[ArrayordenIs[i]] = [];
                     for(var j=0; j<RepresentacionTIME.length;j++){
                         DatosUtilesIsla[ArrayordenIs[i]][RepresentacionTIME[j]] = ArrayResultados[z];
@@ -632,9 +637,10 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
                 //LLamamos a la funcion para crear la comparación
                 if (Operacion) {
 
-                    CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME,true);
+                    CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME,leyendaflagCom);
                     $("#SelectComp").off( "change" );
                     $("#SelectComp").change(function() {
+                        $("#SelectComp").selectmenu("refresh");
                         CrearCircularChart(ArrayDatosFinal, IslasSelect, Islas, CodeIslas, ArrayordenMun, NombreMun, RepresentacionTIME,leyendaflagCom);
                     });
 
@@ -652,7 +658,7 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
                 }
 
                 else{
-                    CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,true);
+                    CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
                     $("#SelectComp").off( "change" );
                     $("#SelectComp").change(function() {
                         CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
@@ -743,11 +749,12 @@ function ComparacionEspacialD(DatosMunicipios,DatosIslas,objPeticion,InfoPeticio
 
 
 
-        CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,true);
+        CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
 
 
         $("#SelectComp").off( "change" );
         $("#SelectComp").change(function() {
+            $("#SelectComp").selectmenu("refresh");
             CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,ArrayordenMun,NombreMun,RepresentacionTIME,DatosMunicipios,leyendaflagCom);
         });
 

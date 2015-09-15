@@ -188,8 +188,8 @@
   {
     "titulo": "Energía eléctrica disponible",
     "Indicador": "ENERGIA_ELECTRICA_DISPONIBLE",
-    "time": "..",
-    "geo": "..",
+    "time": "MONTHLY",
+    "geo": "ISLANDS",
     "acumular": "..",
     "derivado": "NO",
     "espacial": "NO",

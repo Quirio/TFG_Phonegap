@@ -1,10 +1,12 @@
 
 function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaflag)
 {
+    $("#FooterDentro").show();
     //Gráfico de barras
     $("#GraficaBarras").empty();
     var datos = [];
     var leyenda = [];
+
 
 
     if(!derivado) {
@@ -14,17 +16,18 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
             var ArrayGeoRepresentacion = data.dimension.GEOGRAPHICAL.representation.index;
             //console.log("Entro en no derivados");
             var MeasureIndex = data.dimension.MEASURE.representation.size;
+            var PosAbsolute = data.dimension.MEASURE.representation.index.ABSOLUTE;
 
 
             for (var i = 0; i < objPeticion.RepresentacionGeonom.length; i++) {
                 var datgeo = []
                 var index = ArrayGeoRepresentacion[ArrayORdenGEO[i]];
-                var z = index * (objPeticion.RepresentacionTime.length * MeasureIndex);
+                var z = PosAbsolute + (index * objPeticion.RepresentacionTime.length * MeasureIndex);
                 var indexnom = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
                 for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
 
                     if (obser[z] != "." && obser[z] != NaN)
-                        datgeo.push(parseInt(obser[z]));
+                        datgeo.push(parseFloat(obser[z]));
                     else
                         datgeo.push(0);
                     // console.log(parseInt(obser[z]));
@@ -44,7 +47,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
                 var datgeo = [];
                 var indexnom = objPeticion.RepresentacionGeo.indexOf(ArrayORdenGEO[i]);
                 for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
-                    datgeo.push(parseInt(data[z]));
+                    datgeo.push(parseFloat(data[z]));
                     z++;
                 }
                 datos.push(datgeo);
@@ -65,7 +68,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
             for (var j = 0; j < objPeticion.RepresentacionTime.length; j++) {
                 if (Acumular) {
                     if(data[z] != "." && data[z] != NaN) {
-                        acumulado += parseInt(data[z]);
+                        acumulado += parseFloat(data[z]);
                         datgeo.push(acumulado);
                     }
                     else{
@@ -75,7 +78,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
                 }
                 else {
                     if(data[z] != "." && data[z] != NaN)
-                        datgeo.push(parseInt(data[z]));
+                        datgeo.push(parseFloat(data[z]));
                     else
                         datgeo.push(0);
                 }
@@ -94,12 +97,13 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
     if(!Acumular)
         ticks.reverse();
 
-    if(Legendaflag) {
+    if(Legendaflag==true) {
         var plot1 = $.jqplot('GraficaBarras', datos, {
 
 
             seriesDefaults: {
                 renderer: $.jqplot.BarRenderer,
+                pointLabels: {show: true},
                 rendererOptions: {fillToZero: true}
             },
             series: leyenda,
@@ -120,7 +124,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
                 },
                 yaxis: {
                     pad: 1.05,
-                    tickOptions: {formatString: '%d'}
+                    tickOptions: {formatString: "%#.2f"}
                 }
             }
         });
@@ -150,7 +154,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
                 },
                 yaxis: {
                     pad: 1.05,
-                    tickOptions: {formatString: '%d'}
+                    tickOptions: {formatString: "%#.2f"}
                 }
             }
         });
@@ -163,6 +167,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
 
             seriesDefaults: {
                 renderer: $.jqplot.BarRenderer,
+                pointLabels: {show: true},
                 rendererOptions: {fillToZero: true}
             },
             axes: {
@@ -172,7 +177,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
                 },
                 yaxis: {
                     pad: 1.05,
-                    tickOptions: {formatString: '%d'}
+                    tickOptions: {formatString: "%#.2f"}
                 }
             }
         });
@@ -192,7 +197,7 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
                 },
                 yaxis: {
                     pad: 1.05,
-                    tickOptions: {formatString: '%d'}
+                    tickOptions: {formatString: "%#.2f"}
                 }
             }
         });
@@ -338,8 +343,12 @@ function CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayor
             },
             axes: {
                 xaxis: {
-                    renderer: $.jqplot.CategoryAxisRenderer
+                    renderer: $.jqplot.CategoryAxisRenderer,
                     //ticks: ticks
+                },
+                yaxis: {
+                    pad: 1.05,
+                    tickOptions: {formatString: "%#.2f"}
                 }
             },
             highlighter: {show: false}
@@ -354,8 +363,12 @@ function CrearBarrasCOMChart(ArrayDatosFinal,IslasSelect,Islas,CodeIslas,Arrayor
             },
             axes: {
                 xaxis: {
-                    renderer: $.jqplot.CategoryAxisRenderer
+                    renderer: $.jqplot.CategoryAxisRenderer,
                     //ticks: ticks
+                },
+                yaxis: {
+                    pad: 1.05,
+                    tickOptions: {formatString: "%#.2f"}
                 }
             },
             highlighter: {show: false}

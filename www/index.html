@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" />
-    <link rel="stylesheet" href="themes/Vistac_Coyuntura.css" />
+   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" />
+      <link rel="stylesheet" href="themes/Vistac_Coyuntura.css" />
     <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
     <script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" />
+    <link type="text/css" media="screen" rel="stylesheet" href="css/responsive-tables.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+
     <title>Vistac: Coyuntura</title>
 </head>
 <body>
@@ -30,9 +31,11 @@
 <script type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
 <script type="text/javascript" src="js/jqplot.donutRenderer.min.js"></script>
 <script type="text/javascript" src="js/jqplot.enhancedLegendRenderer.min.js"></script>
+<script type="text/javascript" src="js/responsive-tables.js"></script>
 <script type="text/javascript">
     app.initialize();
-    Peticion_Indicadores();</script>
+    Peticion_Indicadores();
+</script>
 
 <div data-role="footer" class="ui-bar">
     <a id="Botonpanel" href="#Panel_Peticion" data-role="button" data-inline="true" data-icon="bars" class="ui-link ui-btn ui-icon-bars ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all"    role="button">Nueva Consulta</a>
@@ -61,10 +64,11 @@
 <div id="tabs" class="tabs" data-role="tabs" id="TabsGraficas">
     <div data-role="navbar">
         <ul>
-            <li><a href="#Graficas">Gráficas</a></li>
-            <li><a href="#Datos">Datos</a></li>
+            <li><a id="BotonG" href="#Graficas">Gráficas</a></li>
+            <li><a id="BotonD" href="#Datos">Datos</a></li>
         </ul>
     </div>
+
     <div id="Graficas">
         <div id="FooterDentro" data-role="footer" class="ui-bar controlgroup">
             <div data-role="controlgroup">
@@ -101,7 +105,7 @@
         <div id="Texto" class="hidden">
               <h1 id="TituloDatos"></h1>
             <center>
-                <table data-role="table" id="TablaDatos" class="ui-responsive" data-mode="reflow">
+                <table id="TablaDatos" data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke">
 
                 </table>
             </center>
@@ -114,7 +118,7 @@
 <div id="IndicadoresDiv">
     <div data-role="panel" data-native-menu="true" id="Panel_Peticion" data-position="left" data-display="overlay">
         <label class="select">Categoría de Datos</label>
-        <select id ="Selectcategoria" data-native-menu="false" onchange="OnchangeSelectorcate()">
+        <select id ="Selectcategoria" data-native-menu="true" onchange="OnchangeSelectorcate()">
             <option value="011">Territorio y usos del suelo</option>
             <option value="021">Población</option>
             <option value="061">Agricultura,ganadería,pesca y caza</option>
@@ -124,11 +128,12 @@
         </select>
 
             <label class="select">Indicador a Consultar</label>
-            <select id="SelectorDatos" data-native-menu="false" onchange="OnchangeSelectorDatos()">
+            <select id="SelectorDatos" data-native-menu="true" onchange="OnchangeSelectorDatos()">
             </select>
 
+        <div id="SelectorIslas">
             <label class="select">Islas</label>
-            <select id ="SelectIslas" multiple="multiple" data-native-menu="false" onchange="OnchangeSelectorDatos()">
+            <select id ="SelectIslas" multiple="multiple" data-native-menu="true" onchange="OnchangeSelectorDatos()">
                 <option value="0">Tenerife</option>
                 <option value="1">La Gomera</option>
                 <option value="2">La Palma</option>
@@ -137,18 +142,18 @@
                 <option value="5">Lanzarote</option>
                 <option value="6">Fuerteventura</option>
             </select>
+        </div>
 
         <div id = "SelectorDiv">
 
-
-            <label class="SelectLabel">Municipios</label>
-            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="false" onchange="OnchangebotonesGranularidad()">
+            <label id="GeoLabel" class="SelectLabel"></label>
+            <select id ="SelectRepresentacionGeo" class = "Select" multiple="multiple" data-native-menu="true" onchange="OnchangebotonesGranularidad()">
             </select>
 
             <input id="BotonRepresentacionGeoTodo" type="button" value="Seleccionar Todo" onclick="onclickBotonTodogeo()">
 
             <label id="TemporalLabel" class="SelectLabel"></label>
-            <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="false" onchange="OnchangebotonesGranularidad()"></select>
+            <select id ="SelectRepresentacionTime" class = "Select" multiple="multiple" data-native-menu="true" onchange="OnchangebotonesGranularidad()"></select>
             <input id="BotonRepresentacionTimeTodo" type="button" value="Seleccionar Todo" onclick="onclickBotonTodotime()">
 
             <input id="BotonPeticion" type="button" value="Enviar" onclick="onclickBotonPeticion()">

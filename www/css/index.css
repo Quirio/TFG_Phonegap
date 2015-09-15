@@ -179,3 +179,14 @@ body {
     stroke: #777;
     stroke-dasharray: 2,2;
 }
+
+#TituloVertical{
+    background-color: darkgrey;
+    z-index: 2;
+}
+
+
+#TablaDatos{
+    overflow-x: auto;
+    display: block;
+}

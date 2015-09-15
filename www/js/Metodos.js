@@ -46,7 +46,6 @@ function URLRepresentacion(objPeticion,flagsuperficie,derivadoflag,espacialflag,
         var RepresentacionGEO;
         var RepresentacionTIME;
         var IslasCodigos = $("#SelectIslas").val();
-        console.log("IslasCodigos: ", IslasCodigos.length);
         var URLRep = '';
         if(objPeticion.RepresentacionTime == null) {
             RepresentacionGEO = objPeticion.RepresentacionGeo;

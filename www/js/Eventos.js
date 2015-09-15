@@ -9,13 +9,20 @@ function OnchangeSelectorcate(){
     $("#BotonRepresentacionTimeTodo").val("Seleccionar Todo");
     $("#BotonRepresentacionGeoTodo").button( "refresh" );
     $("#BotonRepresentacionTimeTodo").button( "refresh" );
+
     Peticion_Indicadores();
+
+    if($("#Selectcategoria").val() == "071") {
+        $("#SelectorIslas").hide();
+    }
+    else
+        $("#SelectorIslas").show();
 
 }
 
 //Evento de onchange de selector de idicador en el panel de peticion.
 function OnchangeSelectorDatos(){
-    if($("#SelectIslas").val() != null && $("#SelectorDatos").val() != "") {
+     if($("#SelectIslas").val() != null && $("#SelectorDatos").val() != "") {
         $(".tabs").tabs("option", "active", 0);
         $("#BotonPeticion").button("disable");
         Peticion_Info_Indicadores($("#SelectorDatos").val().split("%")[0], $("#SelectorDatos").val().split("%")[1]);
@@ -25,7 +32,7 @@ function OnchangeSelectorDatos(){
         $("#BotonRepresentacionTimeTodo").button( "refresh" );
     }
 
-    else{
+    else if($("#Selectcategoria").val() != "071"){
         $("#SelectorDiv").hide();
     }
 }
