@@ -103,7 +103,6 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
 
             seriesDefaults: {
                 renderer: $.jqplot.BarRenderer,
-                pointLabels: {show: true},
                 rendererOptions: {fillToZero: true}
             },
             series: leyenda,

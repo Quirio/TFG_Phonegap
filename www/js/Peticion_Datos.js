@@ -199,10 +199,13 @@ function Peticion_Datos(objPeticion) {
                                     l++;
                                 }
                             }
+
                         }
 
-                        //$("#TablaDatos").table("refresh");
+                        $("#TablaDatos").table( "refresh" );
+
                     }
+
 
                     if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
                         CrearBarChart(data, objPeticion, ArrayORdenGEO, acumularflag, derivadoflag, leyendaflag);
@@ -212,6 +215,8 @@ function Peticion_Datos(objPeticion) {
 
                      if(espacialflag)
                         ComparacionEspacialND(ArrayDatosUtiles,espacialcal,objPeticion,data);
+                     else
+                         $(window).off("orientationchange");
                   //  if(espacialflag)
                      //   ComparacionEspacial(Datos,Operacion,);
 
@@ -225,6 +230,9 @@ function Peticion_Datos(objPeticion) {
 
                         if(espacialflag)
                             ComparacionEspacialND(ArrayDatosUtiles,espacialcal,objPeticion,data);
+
+                        $("#TablaDatos").table( "refresh" );
+
                     })
 
                     $("#BotonLeyendas").off( "mousedown" );
@@ -456,6 +464,7 @@ function Peticion_Datos(objPeticion) {
                                        z++ ;
                                    }
                                }
+                               $("#TablaDatos").table( "refresh" );
 
                             CrearBarChart(DatosFinales, objPeticion, ArrayORdenGEO,false,true,leyendaflag);
                                $(window).on("orientationchange", function (event) {
@@ -477,6 +486,9 @@ function Peticion_Datos(objPeticion) {
 
                                if(espacialflag)
                                    ComparacionEspacialD(DatosFinales,DatosFinalesIslas,objPeticion,data);
+                               else
+                                   $(window).off("orientationchange");
+
 
                                $(window).on("orientationchange", function (event) {
                                    $(".tabs").tabs("option", "active", 0);
@@ -484,6 +496,8 @@ function Peticion_Datos(objPeticion) {
 
                                    if(espacialflag)
                                        ComparacionEspacialD(DatosFinales,DatosFinalesIslas,objPeticion,data);
+                                   $("#TablaDatos").table( "refresh" );
+
                                })
 
                            }
@@ -493,11 +507,10 @@ function Peticion_Datos(objPeticion) {
                        PericionAJAXData(IdicadoresURL[p+1],p+1);
                    });
                }
-
         }
 
     })
-}
+  }
 
 //http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/ALOJATUR_ABIERTOS/data?representation=GEOGRAPHICAL%5B38001%7C38006%5D%3ATIME%5B2015M04%7C2015M05%7C2015M06%5D&api_key=special-key
 //Comparación Espacial para no derivados
