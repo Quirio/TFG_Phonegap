@@ -53,7 +53,6 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
                                     if (NombreComarca != ".") {
                                         NombreComarca = Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].comarca.split('%')[1];
                                         var NombreComarcaid = NombreComarca.replace(/ /g, "");
-                                        console.log("NombreComarca: ", NombreComarcaid);
                                         if ($("#" + NombreComarcaid).length == 0)
                                             $("#" + Relacion[data.dimension.GEOGRAPHICAL.representation[i].code].island.replace(" ", "")).append('<optgroup id="' + NombreComarcaid + '" label="' + NombreComarca + '"class="SelectOption" data-icon=" carat-r" ></optgroup>');
                                         $("#" + NombreComarcaid).append('<option value="' + data.dimension.GEOGRAPHICAL.representation[i].code + '%' + data.dimension.GEOGRAPHICAL.representation[i].title.es + '" class="SelectOption" >' + data.dimension.GEOGRAPHICAL.representation[i].title.es + ' </option>');
@@ -65,6 +64,7 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
 
                                 }
                             }
+                        }
 
                             $("#SelectRepresentacionGeo").selectmenu('refresh');
 
@@ -75,12 +75,11 @@ function Peticion_Info_Indicadores(Indicador,index_Indicador){
 
                             //Rellenamos Selector de representacion temporal
                             for (var i = 0; i < data.dimension.TIME.representation.length; i++) {
-                                console.log(data.dimension.TIME.representation[i].granularityCode, Indicadores[index_Indicador].time);
                                 if (data.dimension.TIME.representation[i].granularityCode == Indicadores[index_Indicador].time)
                                     $("#YEARLY").append('<option value=' + data.dimension.TIME.representation[i].code + ' class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
                                 else if (data.dimension.TIME.representation[i].granularityCode == Indicadores[index_Indicador].time)
                                     $("#MONTHLY").append('<option value=' + data.dimension.TIME.representation[i].code + ' class="SelectOption" >' + data.dimension.TIME.representation[i].title.es + ' </option>');
-                            }
+
 
                             $("#SelectRepresentacionTime").selectmenu('refresh');
                         }

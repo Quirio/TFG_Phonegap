@@ -1,5 +1,5 @@
 
-function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaflag)
+function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaflag,barflag,lineflag)
 {
     $("#FooterDentro").show();
     //Gráfico de barras
@@ -93,113 +93,133 @@ function CrearBarChart(data,objPeticion,ArrayORdenGEO,Acumular,derivado,Legendaf
         }
     }
 
-    var ticks = objPeticion.RepresentacionTime;
+    var ticks = []
+    if(objPeticion.RepresentacionTime[0].indexOf("M") != -1) {
+        for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
+            var Meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+            var num = parseInt(objPeticion.RepresentacionTime[i].split("M")[1]) - 1;
+            var nombre = objPeticion.RepresentacionTime[i].split("M")[0] + Meses[num];
+            ticks[i]= nombre;
+        }
+    }
+    else
+        var ticks = objPeticion.RepresentacionTime;
+
     if(!Acumular)
         ticks.reverse();
 
     if(Legendaflag==true) {
-        var plot1 = $.jqplot('GraficaBarras', datos, {
+
+        if(barflag) {
+            var plot1 = $.jqplot('GraficaBarras', datos, {
 
 
-            seriesDefaults: {
-                renderer: $.jqplot.BarRenderer,
-                rendererOptions: {fillToZero: true}
-            },
-            series: leyenda,
-            legend: {
-                renderer: $.jqplot.EnhancedLegendRenderer,
-                show: true,
-                placement: 'outsideGrid',
-                rendererOptions: {
-                    numberRows: 30
-                    // number
+                seriesDefaults: {
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions: {fillToZero: true}
                 },
-                location: 'w'
-            },
-            axes: {
-                xaxis: {
-                    renderer: $.jqplot.CategoryAxisRenderer,
-                    ticks: ticks
+                series: leyenda,
+                legend: {
+                    renderer: $.jqplot.EnhancedLegendRenderer,
+                    show: true,
+                    placement: 'outsideGrid',
+                    rendererOptions: {
+                        numberRows: 30
+                        // number
+                    },
+                    location: 'w'
                 },
-                yaxis: {
-                    pad: 1.05,
-                    tickOptions: {formatString: "%#.2f"}
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks
+                    },
+                    yaxis: {
+                        pad: 1.05,
+                        tickOptions: {formatString: "%#.2f"}
+                    }
                 }
-            }
-        });
+            });
+        }
 
         //Gráfico de Líneas
         $("#GraficaLineas").empty();
-        $.jqplot('GraficaLineas', datos, {
-            series: leyenda,
-            legend: {
-                renderer: $.jqplot.EnhancedLegendRenderer,
-                show: true,
-                placement: 'outsideGrid',
-                rendererOptions: {
-                    numberRows: 30
-                    // number
-                },
-                location: 'w'
-            },
-            /* legend: {
-             show: true,
 
-             },*/
-            axes: {
-                xaxis: {
-                    renderer: $.jqplot.CategoryAxisRenderer,
-                    ticks: ticks
+        if(lineflag) {
+            $.jqplot('GraficaLineas', datos, {
+                series: leyenda,
+                legend: {
+                    renderer: $.jqplot.EnhancedLegendRenderer,
+                    show: true,
+                    placement: 'outsideGrid',
+                    rendererOptions: {
+                        numberRows: 30
+                        // number
+                    },
+                    location: 'w'
                 },
-                yaxis: {
-                    pad: 1.05,
-                    tickOptions: {formatString: "%#.2f"}
+                /* legend: {
+                 show: true,
+
+                 },*/
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks
+                    },
+                    yaxis: {
+                        pad: 1.05,
+                        tickOptions: {formatString: "%#.2f"}
+                    }
                 }
-            }
-        });
+            });
+        }
         $("#GraficaLineas .jqplot-table-legend").hide();
     }
 
     else{
-        var plot1 = $.jqplot('GraficaBarras', datos, {
+        if(barflag) {
+            var plot1 = $.jqplot('GraficaBarras', datos, {
 
 
-            seriesDefaults: {
-                renderer: $.jqplot.BarRenderer,
-                pointLabels: {show: true},
-                rendererOptions: {fillToZero: true}
-            },
-            axes: {
-                xaxis: {
-                    renderer: $.jqplot.CategoryAxisRenderer,
-                    ticks: ticks
+                seriesDefaults: {
+                    renderer: $.jqplot.BarRenderer,
+                    rendererOptions: {fillToZero: true}
                 },
-                yaxis: {
-                    pad: 1.05,
-                    tickOptions: {formatString: "%#.2f"}
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks
+                    },
+                    yaxis: {
+                        pad: 1.05,
+                        tickOptions: {formatString: "%#.2f"}
+                    }
                 }
-            }
-        });
+            });
+        }
 
         //Gráfico de Líneas
         $("#GraficaLineas").empty();
-        $.jqplot('GraficaLineas', datos, {
+        if(lineflag) {
+            $.jqplot('GraficaLineas', datos, {
 
-            /* legend: {
-             show: true,
+                /* legend: {
+                 show: true,
 
-             },*/
-            axes: {
-                xaxis: {
-                    renderer: $.jqplot.CategoryAxisRenderer,
-                    ticks: ticks
-                },
-                yaxis: {
-                    pad: 1.05,
-                    tickOptions: {formatString: "%#.2f"}
+                 },*/
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks
+                    },
+                    yaxis: {
+                        pad: 1.05,
+                        tickOptions: {formatString: "%#.2f"}
+                    }
                 }
-            }
-        });
+            });
+        }
     }
     $(".jqplot-table-legend").css( "top", "5%" );
 

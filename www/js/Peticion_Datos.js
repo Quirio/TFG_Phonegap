@@ -13,6 +13,28 @@ function Peticion_Datos(objPeticion) {
         leyendaflagCom = true;
     }
 
+    var Barflag = true;
+    var Lineflag = true;
+    if(objPeticion.RepresentacionGeo.length * objPeticion.RepresentacionTime.length >= 165) {
+        Barflag = false;
+        $("#GraficaBarras").hide();
+    }
+    else{
+        $("#GraficaBarras").show();
+    }
+
+    if(objPeticion.RepresentacionTime.length == 1) {
+        Lineflag = false;
+        $("#GraficaLineas").hide();
+    }
+
+    else{
+        $("#GraficaLineas").show();
+    }
+
+//         <div id="GraficaBarras"></div>
+//<div id="GraficaLineas"></div>
+
 
     $("#GraficaC").empty();
     $("#GraficaCircular").hide();
@@ -126,9 +148,19 @@ function Peticion_Datos(objPeticion) {
                         $("#TablaDatos").append('<thead><tr id="Titulo"></tr></thead><tbody id="Cuerpo"></tbody>');
 
                         $("#Titulo").append('<th></th>');
+
                         if (JSONindi[objPeticion.IndicadorNum].acumular != "SI") {
                             for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
-                                $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
+                                if(JSONindi[objPeticion.IndicadorNum].time == "MONTHLY"){
+                                    var Meses = ['enero','febrero','marzo','abril','mayo','junio','julio', 'agosto','septiembre','octubre','noviembre','diciembre'];
+                                    var num =  parseInt(objPeticion.RepresentacionTime[i].split("M")[1])-1;
+                                    var nombre = objPeticion.RepresentacionTime[i].split("M")[0]+Meses[num];
+                                    $("#Titulo").append('<th>' +nombre+ '</th>');
+
+
+                                }
+                                else
+                                    $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
                             }
                         }
 
@@ -208,9 +240,9 @@ function Peticion_Datos(objPeticion) {
 
 
                     if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
-                        CrearBarChart(data, objPeticion, ArrayORdenGEO, acumularflag, derivadoflag, leyendaflag);
+                        CrearBarChart(data, objPeticion, ArrayORdenGEO, acumularflag, derivadoflag, leyendaflag,Barflag,Lineflag);
                     else
-                        CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag);
+                        CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag,Barflag,Lineflag);
 
 
                      if(espacialflag)
@@ -224,9 +256,9 @@ function Peticion_Datos(objPeticion) {
                         console.log("Evento: ",event.orientation);
                         $(".tabs").tabs("option", "active", 0);
                         if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
-                            CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag,leyendaflag);
+                            CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag,leyendaflag,Barflag,Lineflag);
                         else
-                            CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag);
+                            CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag,Barflag,Lineflag);
 
                         if(espacialflag)
                             ComparacionEspacialND(ArrayDatosUtiles,espacialcal,objPeticion,data);
@@ -244,9 +276,9 @@ function Peticion_Datos(objPeticion) {
                         else
                             leyendaflag = true;
                         if(JSONindi[objPeticion.IndicadorNum].acumular != "SI")
-                             CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag, leyendaflag);
+                             CrearBarChart(data, objPeticion, ArrayORdenGEO,acumularflag,derivadoflag, leyendaflag,Barflag,Lineflag);
                         else
-                            CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag);
+                            CrearBarChart(ArrayDatosUtilesAcum, objPeticion, ArrayORdenGEO, true, derivadoflag, leyendaflag,Barflag,Lineflag);
                     });
 
                 }
@@ -444,7 +476,18 @@ function Peticion_Datos(objPeticion) {
 
                                 $("#Titulo").append('<th></th>');
                                 for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
-                                    $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
+                                    for (var i = 0; i < objPeticion.RepresentacionTime.length; i++) {
+                                        if(JSONindi[objPeticion.IndicadorNum].time == "MONTHLY"){
+                                            var Meses = ['enero','febrero','marzo','abril','mayo','junio','julio', 'agosto','septiembre','octubre','noviembre','diciembre'];
+                                            var num =  parseInt(objPeticion.RepresentacionTime[i].split("M")[1])-1;
+                                            var nombre = objPeticion.RepresentacionTime[i].split("M")[0]+Meses[num];
+                                            $("#Titulo").append('<th>' +nombre+ '</th>');
+
+
+                                        }
+                                        else
+                                            $("#Titulo").append('<th>' + objPeticion.RepresentacionTime[i] + '</th>');
+                                    }
                                 }
 
                                var z = 0;
@@ -639,7 +682,14 @@ function ComparacionEspacialND(DatosMunicipios,Operacion,objPeticion,InfoPeticio
                     if(ContieneMunicipios[IslasSelect[i]]){
                         for(var j=0; j<RepresentacionTIME.length;j++){
                             //<option value="011">Territorio y usos del suelo</option>
-                            $("#SelectComp").append('<option value="' + CodeIslas[IslasSelect[i]] +'%'+ RepresentacionTIME[j] +'"> Datos de la isla ' +  Islas[IslasSelect[i]] + ' en el '+ RepresentacionTIME[j]+  '</option>');
+                            if(objPeticion.RepresentacionTime[0].indexOf("M") != -1) {
+                                var Meses = ['enero','febrero','marzo','abril','mayo','junio','julio', 'agosto','septiembre','octubre','noviembre','diciembre'];
+                                var num =  parseInt(objPeticion.RepresentacionTime[j].split("M")[1])-1;
+                                var nombre = Meses[num]+ " de " + objPeticion.RepresentacionTime[j].split("M")[0] ;
+                                $("#SelectComp").append('<option value="' + CodeIslas[IslasSelect[i]] +'%'+ RepresentacionTIME[j] +'"> Datos de la isla ' +  Islas[IslasSelect[i]] + ' en '+ nombre +  '</option>');
+                            }
+                            else
+                                $("#SelectComp").append('<option value="' + CodeIslas[IslasSelect[i]] +'%'+ RepresentacionTIME[j] +'"> Datos de la isla ' +  Islas[IslasSelect[i]] + ' en el '+ RepresentacionTIME[j]+  '</option>');
                         }
                     }
 
